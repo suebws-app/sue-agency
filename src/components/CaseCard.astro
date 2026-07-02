@@ -1,0 +1,79 @@
+---
+import type { CaseStudy } from '../data/cases';
+import Tag from './ui/Tag.astro';
+
+interface Props {
+  post: CaseStudy;
+}
+const { post } = Astro.props;
+---
+
+<a href={`/work#${post.slug}`} class="block text-inherit no-underline group">
+  <div
+    class="relative aspect-4/3 overflow-hidden rounded-[20px] border border-dark/10 shadow-[0_6px_20px_-12px_rgba(26,22,17,0.25)] transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_34px_60px_-30px_rgba(26,22,17,0.42)]"
+    style={`background: ${post.gradient};`}
+  >
+    <div
+      class="absolute inset-6 flex flex-col gap-2.5 rounded-[14px] bg-ink p-4"
+      aria-hidden="true"
+    >
+      {post.mockup === 'form' && (
+        <>
+          <div class="flex gap-1.5">
+            <span class="h-2.25 w-2.25 rounded-full bg-accent"></span>
+            <span class="h-2.25 w-2.25 rounded-full bg-amber-brand"></span>
+            <span class="h-2.25 w-2.25 rounded-full bg-emerald-brand"></span>
+          </div>
+          <div class="mt-1.5 h-3.5 w-3/5 rounded bg-cream/90"></div>
+          <div class="h-2.25 w-[85%] rounded bg-cream/35"></div>
+          <div class="h-2.25 w-[72%] rounded bg-cream/35"></div>
+          <div
+            class="mt-auto h-7.5 w-30 rounded-lg"
+            style={`background: ${post.accent};`}
+          ></div>
+        </>
+      )}
+      {post.mockup === 'dashboard' && (
+        <>
+          <div class="flex items-center gap-2">
+            <div
+              class="h-6 w-6 rounded-md"
+              style={`background: ${post.accent};`}
+            ></div>
+            <div class="h-2.5 w-20 rounded bg-cream/80"></div>
+          </div>
+          <div class="mt-2 flex gap-2">
+            <div class="h-11.5 flex-1 rounded-lg bg-cream/15"></div>
+            <div class="h-11.5 flex-1 rounded-lg bg-cream/15"></div>
+          </div>
+          <div class="mt-1 h-2.25 w-[90%] rounded bg-cream/35"></div>
+          <div class="h-2.25 w-[65%] rounded bg-cream/35"></div>
+        </>
+      )}
+      {post.mockup === 'editorial' && (
+        <>
+          <div class="h-4 w-1/2 rounded bg-cream/90"></div>
+          <div class="h-2.25 w-4/5 rounded bg-cream/30"></div>
+          <div class="mt-auto flex gap-2">
+            <div
+              class="h-8.5 w-8.5 rounded-full"
+              style={`background: ${post.accent};`}
+            ></div>
+            <div class="h-8.5 w-8.5 rounded-full bg-cream/20"></div>
+            <div class="h-8.5 w-8.5 rounded-full bg-cream/20"></div>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+  <div class="px-1 pt-5">
+    <div class="mb-3 flex gap-2">
+      <Tag>{post.category}</Tag>
+      <Tag>{post.stack}</Tag>
+    </div>
+    <h3 class="title-fill font-display m-0 mb-1.5 text-2xl font-bold tracking-[-0.02em]">
+      {post.client} — {post.subtitle}
+    </h3>
+    <p class="m-0 text-[15px] text-muted">{post.excerpt}</p>
+  </div>
+</a>

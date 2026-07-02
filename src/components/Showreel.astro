@@ -1,0 +1,33 @@
+---
+import StatItem from './ui/StatItem.astro';
+---
+
+<section class="relative z-10 mx-auto max-w-310 px-8 pb-5">
+  <div
+    class="relative flex aspect-16/7 items-end overflow-hidden rounded-[22px] border border-dark/10 bg-ink shadow-[0_50px_90px_-50px_rgba(20,18,16,0.55)]"
+  >
+    <div
+      class="animate-drift-slow absolute -inset-[18%]"
+      style="background:
+        radial-gradient(120% 140% at 18% 0%, rgba(255, 82, 51, 0.30), transparent 55%),
+        radial-gradient(90% 120% at 92% 20%, rgba(120, 110, 255, 0.22), transparent 50%);"
+      aria-hidden="true"
+    ></div>
+    <div class="relative flex w-full flex-wrap items-end justify-between gap-5 px-10 py-9.5">
+      <div class="text-cream">
+        <div class="mb-2.5 text-[13px] uppercase tracking-[0.14em] opacity-60">
+          Selected build · 2026
+        </div>
+        <div
+          class="font-display text-[clamp(26px,3.4vw,44px)] font-bold leading-none tracking-[-0.02em]"
+        >
+          Lumen — a headless commerce platform
+        </div>
+      </div>
+      <div class="flex gap-9 text-cream">
+        <StatItem value="0.3s" label="LCP" size="sm" />
+        <StatItem value="+41%" label="Conversion" size="sm" />
+      </div>
+    </div>
+  </div>
+</section>

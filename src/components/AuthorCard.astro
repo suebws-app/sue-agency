@@ -1,0 +1,33 @@
+---
+import GradientAvatar from './ui/GradientAvatar.astro';
+import PillButton from './ui/PillButton.astro';
+
+interface Props {
+  author: string;
+  bio: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const {
+  author,
+  bio,
+  ctaHref = '/#contact',
+  ctaLabel = 'Work with us',
+} = Astro.props;
+---
+
+<section class="relative z-10 mx-auto max-w-250 px-8 pb-5 pt-2">
+  <div
+    class="flex flex-wrap items-center gap-5 rounded-[20px] border border-dark/10 bg-card p-8"
+  >
+    <GradientAvatar size={56} />
+    <div class="min-w-55 flex-1">
+      <div class="font-display text-lg font-bold tracking-[-0.01em]">
+        {author}
+      </div>
+      <p class="mt-1.5 text-[15px] leading-[1.55] text-muted">{bio}</p>
+    </div>
+    <PillButton href={ctaHref} size="md">{ctaLabel}</PillButton>
+  </div>
+</section>

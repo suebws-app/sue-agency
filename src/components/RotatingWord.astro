@@ -1,0 +1,26 @@
+---
+interface Props {
+  words: string[];
+}
+
+const { words } = Astro.props;
+const longest = words.reduce((a, b) => (a.length >= b.length ? a : b), '');
+const durationPerWord = 3; // seconds per word
+const total = words.length * durationPerWord;
+---
+
+<span
+  class="relative inline-block align-top font-serif italic font-normal text-accent tracking-[-0.01em]"
+>
+  <span class="invisible whitespace-nowrap">{longest}</span>
+  {words.map((word, i) => (
+    <span
+      class="absolute left-0 top-0 whitespace-nowrap opacity-0 pointer-events-none [animation:vl-word_var(--total)_cubic-bezier(0.4,0,0.2,1)_infinite]"
+      style={`--total: ${total}s; animation-delay: ${i * durationPerWord}s;`}
+      aria-hidden={i !== 0}
+    >
+      {word}
+    </span>
+  ))}
+</span>
+

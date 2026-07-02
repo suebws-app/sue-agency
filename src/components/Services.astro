@@ -1,0 +1,69 @@
+---
+import Eyebrow from './ui/Eyebrow.astro';
+
+interface Props {
+  showHeader?: boolean;
+}
+const { showHeader = true } = Astro.props;
+
+const services = [
+  {
+    num: '01',
+    title: 'Web Design',
+    body: 'Editorial, brand-led interfaces designed in the browser — not just static mockups.',
+    meta: 'Systems · UX · Prototyping',
+  },
+  {
+    num: '02',
+    title: 'Frontend Engineering',
+    body: 'Composable frontends in React, Astro, and Next — accessible, typed, and tested.',
+    meta: 'React · Astro · Edge',
+  },
+  {
+    num: '03',
+    title: 'Headless CMS',
+    body: 'Content models your team actually enjoys — Sanity, Contentful, or your stack.',
+    meta: 'Sanity · Contentful · DXP',
+  },
+  {
+    num: '04',
+    title: 'Performance & SEO',
+    body: 'Core Web Vitals in the green, technical SEO baked in, Lighthouse at 100.',
+    meta: 'CWV · Audits · Growth',
+  },
+];
+---
+
+<section id="services" class="relative z-10 mx-auto max-w-310 px-8 pt-24 pb-6">
+  {showHeader && (
+    <div class="mb-11.5 flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <Eyebrow class="mb-4">What we do</Eyebrow>
+        <h2
+          class="font-display m-0 max-w-[14ch] text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
+        >
+          Full-stack web, minus the bloat.
+        </h2>
+      </div>
+      <p class="m-0 mb-1.5 max-w-[34ch] text-base text-muted">
+        From first pixel to production, we own the whole pipeline — so nothing
+        gets lost between design and deploy.
+      </p>
+    </div>
+  )}
+
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4">
+    {services.map((s) => (
+      <article
+        class="transition-all duration-300 ease-out flex min-h-65 flex-col gap-4 rounded-[18px] border border-dark/10 bg-card p-7.5 hover:-translate-y-1 hover:border-dark/15 hover:shadow-[0_26px_50px_-30px_rgba(26,22,17,0.32)]"
+      >
+        <div class="font-display text-[15px] font-bold text-accent">{s.num}</div>
+        <h3 class="font-display m-0 text-2xl font-bold tracking-[-0.02em]">
+          {s.title}
+        </h3>
+        <p class="m-0 text-[15px] leading-[1.55] text-muted">{s.body}</p>
+        <div class="mt-auto text-sm text-subtle">{s.meta}</div>
+      </article>
+    ))}
+  </div>
+</section>

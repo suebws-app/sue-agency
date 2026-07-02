@@ -1,0 +1,59 @@
+---
+import Logo from './Logo.astro';
+
+const columns = [
+  {
+    label: 'Studio',
+    links: [
+      { href: '/work', label: 'Work' },
+      { href: '/services', label: 'Services' },
+      { href: '/process', label: 'Process' },
+      { href: '/journal', label: 'Journal' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    label: 'Connect',
+    links: [
+      { href: '#', label: 'Twitter / X' },
+      { href: '#', label: 'GitHub' },
+      { href: '#', label: 'LinkedIn' },
+      { href: 'mailto:hello@sueagency.com', label: 'Email' },
+    ],
+  },
+];
+---
+
+<footer class="relative z-10 border-t border-dark/15">
+  <div class="mx-auto flex max-w-310 flex-wrap justify-between gap-10 px-8 pt-14 pb-10">
+    <div class="max-w-70">
+      <div class="mb-4">
+        <Logo href="/" />
+      </div>
+      <p class="m-0 text-sm leading-[1.55] text-subtle">
+        A web studio building fast, composable sites for ambitious brands.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-14">
+      {columns.map((col) => (
+        <div class="flex flex-col gap-3">
+          <div class="mb-0.5 text-xs uppercase tracking-[0.12em] text-subtle">
+            {col.label}
+          </div>
+          {col.links.map((link) => (
+            <a
+              href={link.href}
+              class="text-[15px] text-dark no-underline hover:text-accent"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="mx-auto flex max-w-310 flex-wrap justify-between gap-4 px-8 pb-10 text-[13px] text-subtle">
+    <span>© 2026 SUE Agency. All rights reserved.</span>
+    <span>Made fast, on the edge.</span>
+  </div>
+</footer>

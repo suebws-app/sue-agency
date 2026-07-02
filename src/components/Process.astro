@@ -1,0 +1,71 @@
+---
+import Eyebrow from './ui/Eyebrow.astro';
+
+interface Props {
+  showHeader?: boolean;
+}
+const { showHeader = true } = Astro.props;
+
+const steps = [
+  {
+    week: 'Week 01',
+    title: 'Discover',
+    body: 'Goals, audience, and audit of what you have today.',
+  },
+  {
+    week: 'Week 02',
+    title: 'Design',
+    body: 'Design system and key pages, prototyped live in the browser.',
+  },
+  {
+    week: 'Week 03',
+    title: 'Build',
+    body: 'Composable frontend wired to your CMS, shipped to preview URLs.',
+  },
+  {
+    week: 'Week 04',
+    title: 'Launch',
+    body: 'Perf pass, QA, and a zero-downtime deploy — then we hand off clean.',
+  },
+];
+---
+
+<section id="process" class="relative z-10 mt-14 bg-ink text-cream">
+  <div class="mx-auto max-w-310 px-8 py-24">
+    {showHeader && (
+      <div class="mb-14 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <Eyebrow onDark class="mb-4">How we work</Eyebrow>
+          <h2
+            class="font-display m-0 max-w-[16ch] text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
+          >
+            Four weeks from kickoff to{' '}
+            <span class="font-serif italic font-normal text-accent-vivid">go-live.</span>
+          </h2>
+        </div>
+        <p class="m-0 mb-1.5 max-w-[32ch] text-base text-cream/65">
+          A tight, transparent process. You see progress every week, in a real
+          environment.
+        </p>
+      </div>
+    )}
+
+    <div
+      class="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-px overflow-hidden rounded-[20px] border border-cream/15 bg-cream/15"
+    >
+      {steps.map((s) => (
+        <div class="bg-ink p-8">
+          <div class="font-display mb-10 text-[15px] font-bold text-accent-vivid">
+            {s.week}
+          </div>
+          <h3
+            class="font-display m-0 mb-2.5 text-[22px] font-bold tracking-[-0.02em]"
+          >
+            {s.title}
+          </h3>
+          <p class="m-0 text-sm leading-[1.55] text-cream/60">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

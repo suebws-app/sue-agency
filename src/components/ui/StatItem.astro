@@ -1,0 +1,24 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+const { value, label, size = 'md', class: className = '' } = Astro.props;
+
+const valueClass = {
+  sm: 'text-[34px]',
+  md: 'text-[38px]',
+  lg: 'text-[clamp(30px,4vw,52px)] tracking-[-0.03em]',
+}[size];
+
+const labelClass = size === 'lg' ? 'text-sm' : 'text-[13px]';
+---
+
+<div class:list={[className]}>
+  <div class:list={['font-display font-bold tracking-[-0.02em]', valueClass]}>
+    {value}
+  </div>
+  <div class:list={['opacity-60', labelClass]}>{label}</div>
+</div>

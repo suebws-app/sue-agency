@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Aurora from '../../components/Aurora.astro';
+import ReadingProgress from '../../components/ReadingProgress.astro';
+import ArticleHeader from '../../components/ArticleHeader.astro';
+import ArticleHeroImage from '../../components/ArticleHeroImage.astro';
+import ArticleBody from '../../components/ArticleBody.astro';
+import AuthorCard from '../../components/AuthorCard.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import Footer from '../../components/Footer.astro';
+import { posts, getRelatedPosts, type Post } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const related = getRelatedPosts(post.slug, 3);
+---
+
+<Layout
+  title={`${post.title} — SUE Journal`}
+  description={post.description}
+>
+  <Nav activeLink="Journal" />
+  <ReadingProgress />
+  <main class="relative pt-18.25">
+    <Aurora variant="minimal" />
+    <ArticleHeader
+      tag={post.tag}
+      date={post.date}
+      read={post.read}
+      author={post.author.name}
+      authorRole={post.author.role}
+      title={post.title}
+      titleAccent={post.titleAccent}
+      description={post.description}
+    />
+    <ArticleHeroImage stats={post.heroStats} bg={post.bg} />
+    <ArticleBody blocks={post.body} />
+    <AuthorCard author={post.author.name} bio={post.author.bio} />
+    <div class="offscreen">
+      <RelatedPosts posts={related} />
+    </div>
+  </main>
+  <div class="offscreen">
+    <Footer />
+  </div>
+</Layout>

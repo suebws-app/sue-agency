@@ -1,0 +1,70 @@
+---
+import type { Block } from '../data/posts';
+
+interface Props {
+  blocks: Block[];
+}
+const { blocks } = Astro.props;
+
+function escape(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Inline: turn `foo` into <code>foo</code> after escaping.
+function renderInline(s: string): string {
+  return escape(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
+// Very light server-side JS syntax highlighting for code blocks.
+// Order: comments first, then strings — placeholders keep them from
+// re-matching each other.
+function renderCode(s: string): string {
+  const escaped = escape(s);
+  const comments: string[] = [];
+  const strings: string[] = [];
+  let out = escaped.replace(/\/\/[^\n]*/g, (m) => {
+    const i = comments.push(m) - 1;
+    return `\0COMMENT${i}\0`;
+  });
+  out = out.replace(/'[^']*'|"[^"]*"/g, (m) => {
+    const i = strings.push(m) - 1;
+    return `\0STRING${i}\0`;
+  });
+  out = out.replace(/\0COMMENT(\d+)\0/g, (_m, i) => `<span class="c">${comments[Number(i)]}</span>`);
+  out = out.replace(/\0STRING(\d+)\0/g, (_m, i) => `<span class="s">${strings[Number(i)]}</span>`);
+  return out;
+}
+---
+
+<article class="prose relative z-10 mx-auto max-w-250 px-8 pb-10 pt-14">
+  {blocks.map((block) => {
+    if (block.type === 'p') {
+      return <p set:html={renderInline(block.text)}></p>;
+    }
+    if (block.type === 'h2') {
+      return <h2>{block.text}</h2>;
+    }
+    if (block.type === 'quote') {
+      return <blockquote>{block.text}</blockquote>;
+    }
+    if (block.type === 'ul') {
+      return (
+        <ul>
+          {block.items.map((item) => (
+            <li set:html={renderInline(item)}></li>
+          ))}
+        </ul>
+      );
+    }
+    if (block.type === 'code') {
+      return (
+        <pre class="code-block"><code set:html={renderCode(block.code)}></code></pre>
+      );
+    }
+    return null;
+  })}
+</article>
+

@@ -1,0 +1,25 @@
+---
+interface Props {
+  href: string;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+const { href, size = 'sm', class: className = '' } = Astro.props;
+
+const sizeClass = {
+  sm: 'px-5 py-2.75 text-sm',
+  md: 'px-5.5 py-3.25 text-sm',
+  lg: 'px-7.5 py-4 text-base',
+}[size];
+---
+
+<a
+  href={href}
+  class:list={[
+    'whitespace-nowrap rounded-full bg-dark font-semibold text-cream no-underline hover:bg-accent',
+    sizeClass,
+    className,
+  ]}
+>
+  <slot />
+</a>

@@ -1,0 +1,42 @@
+---
+import Eyebrow from './ui/Eyebrow.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  titleAccent?: string;
+  description: string;
+}
+
+const { eyebrow, title, titleAccent, description } = Astro.props;
+
+let before = title;
+let after = '';
+if (titleAccent && title.includes(titleAccent)) {
+  const idx = title.indexOf(titleAccent);
+  before = title.slice(0, idx).trimEnd();
+  after = title.slice(idx + titleAccent.length).trimStart();
+}
+---
+
+<section class="relative z-10 mx-auto max-w-310 px-8 pb-10 pt-20">
+  <Eyebrow class="mb-4.5">{eyebrow}</Eyebrow>
+  <h1
+    class="font-display m-0 max-w-[16ch] text-[clamp(44px,7vw,96px)] font-bold leading-[0.98] tracking-[-0.035em]"
+  >
+    {titleAccent ? (
+      <>
+        {before}
+        {before && ' '}
+        <span class="font-serif italic font-normal text-accent">{titleAccent}</span>
+        {after && ' '}
+        {after}
+      </>
+    ) : (
+      title
+    )}
+  </h1>
+  <p class="mt-7 max-w-[52ch] text-[19px] leading-[1.5] text-muted">
+    {description}
+  </p>
+</section>

@@ -1,0 +1,32 @@
+---
+import RotatingWord from './RotatingWord.astro';
+---
+
+<section class="relative z-10 mx-auto max-w-310 px-8 pt-19.5 pb-16">
+  <h1
+    class="font-display m-0 max-w-[16ch] text-[clamp(46px,8.2vw,116px)] font-bold leading-[0.98] tracking-[-0.035em]"
+  >
+    Fast websites for brands that{' '}
+    <RotatingWord words={['refuse to wait.', "can't slow down.", 'demand more.']} />
+  </h1>
+  <div class="mt-10 flex flex-wrap items-end justify-between gap-8">
+    <p class="m-0 max-w-[46ch] text-[19px] leading-normal text-muted">
+      SUE is a web studio crafting high-performance, composable sites — engineered
+      for speed, designed to convert, and built to scale.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a
+        href="/contact"
+        class="whitespace-nowrap rounded-full bg-accent px-6.5 py-3.75  transition-all duration-300 ease-out text-[15px] font-semibold text-white no-underline shadow-[0_14px_30px_-12px_rgba(26,22,17,0.4)] hover:brightness-95 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-14px_rgba(26,22,17,0.5)]"
+      >
+        Start a project
+      </a>
+      <a
+        href="/work"
+        class="whitespace-nowrap rounded-full border border-dark/20 bg-transparent px-6.5 py-3.75 text-[15px] font-semibold text-dark no-underline hover:border-dark"
+      >
+        See our work →
+      </a>
+    </div>
+  </div>
+</section>

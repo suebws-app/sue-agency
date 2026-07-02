@@ -1,0 +1,234 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Aurora from '../components/Aurora.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+
+const inputClass =
+  'w-full rounded-xl border border-dark/15 bg-white px-4 py-3 text-base text-dark placeholder:text-subtle focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20';
+
+const selectClass = `${inputClass} appearance-none pr-11`;
+
+// Custom chevron so the arrow sits comfortably away from the border
+// instead of jammed against it like the native one.
+const selectStyle =
+  "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234A443C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 1rem center;";
+
+const labelClass = 'mb-2 block text-sm font-semibold text-dark';
+
+const nextSteps = [
+  { n: '01', title: 'We reply', body: 'Within two business days, from a real person.' },
+  { n: '02', title: 'Discovery call', body: '30 minutes to align on scope, timeline, and fit.' },
+  { n: '03', title: 'Proposal', body: 'A one-pager with the plan, deliverables, and price.' },
+];
+---
+
+<Layout
+  title="Contact — SUE Agency"
+  description="Start a project with SUE. Tell us what you're building and we'll reply within two business days."
+>
+  <Nav />
+  <main class="relative pt-18.25">
+    <Aurora variant="compact" />
+
+    <PageHero
+      eyebrow="Start a project"
+      title="Let's talk."
+      titleAccent="Let's"
+      description="Tell us what you're building. We'll come back within two business days with a plan and a ballpark. Prefer email? hello@sueagency.com."
+    />
+
+    <section class="relative z-10 mx-auto max-w-310 px-8 pt-6 pb-16">
+      <div class="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
+        <form
+          id="contact-form"
+          class="rounded-[22px] border border-dark/10 bg-card p-8 lg:p-10"
+          method="post"
+          action="mailto:hello@sueagency.com"
+          enctype="text/plain"
+          novalidate
+        >
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label class={labelClass} for="name">Your name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="Jamie Rivera"
+                class={inputClass}
+              />
+            </div>
+            <div>
+              <label class={labelClass} for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                placeholder="jamie@company.com"
+                class={inputClass}
+              />
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label class={labelClass} for="company">
+              Company <span class="font-normal text-subtle">(optional)</span>
+            </label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              autocomplete="organization"
+              placeholder="Northwind"
+              class={inputClass}
+            />
+          </div>
+
+          <div class="mt-6">
+            <label class={labelClass} for="details">Tell us about your project</label>
+            <textarea
+              id="details"
+              name="details"
+              required
+              rows="6"
+              placeholder="What are you building? Any deadlines, constraints, or links to existing work?"
+              class={inputClass}
+            ></textarea>
+          </div>
+
+          <div class="mt-6 grid gap-6 sm:grid-cols-2">
+            <div>
+              <label class={labelClass} for="budget">Budget range</label>
+              <select id="budget" name="budget" class={selectClass} style={selectStyle}>
+                <option value="">Select…</option>
+                <option>Under $50k</option>
+                <option>$50k – $100k</option>
+                <option>$100k – $200k</option>
+                <option>$200k+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div>
+              <label class={labelClass} for="timeline">Timeline</label>
+              <select id="timeline" name="timeline" class={selectClass} style={selectStyle}>
+                <option value="">Select…</option>
+                <option>ASAP</option>
+                <option>In the next 1–2 months</option>
+                <option>2–3 months out</option>
+                <option>Just exploring</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <button
+              type="submit"
+              class="whitespace-nowrap rounded-full bg-accent px-7 py-4 text-base font-semibold transition-all duration-300 ease-out text-white no-underline shadow-[0_14px_30px_-12px_rgba(26,22,17,0.4)] hover:brightness-95 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-14px_rgba(26,22,17,0.5)]"
+            >
+              Send message →
+            </button>
+            <p id="form-status" class="m-0 text-sm text-subtle" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <aside class="flex flex-col gap-8">
+          <div class="rounded-[22px] border border-dark/10 bg-card p-8">
+            <div
+              class="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-accent"
+            >
+              Or email us directly
+            </div>
+            <a
+              href="mailto:hello@sueagency.com"
+              class="underline-fill inline-block pb-0.5 font-display text-lg font-bold text-dark no-underline"
+            >
+              hello@sueagency.com
+            </a>
+            <p class="mt-3 text-sm leading-[1.6] text-muted">
+              We read every inbound and reply within two business days. If you
+              need faster than that, mention it in the subject.
+            </p>
+          </div>
+
+          <div class="rounded-[22px] border border-dark/10 bg-card p-8">
+            <div
+              class="mb-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-accent"
+            >
+              What happens next
+            </div>
+            <ol class="m-0 flex list-none flex-col gap-5 p-0">
+              {nextSteps.map((step) => (
+                <li class="flex items-start gap-4">
+                  <span
+                    class="font-display shrink-0 text-sm font-bold text-accent"
+                    aria-hidden="true"
+                  >
+                    {step.n}
+                  </span>
+                  <div>
+                    <div
+                      class="font-display text-base font-bold tracking-[-0.01em] text-dark"
+                    >
+                      {step.title}
+                    </div>
+                    <p class="mt-1 text-sm leading-[1.55] text-muted">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <div class="offscreen">
+    <Footer />
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const data = new FormData(form);
+    const labels: Record<string, string> = {
+      name: 'Name',
+      email: 'Email',
+      company: 'Company',
+      details: 'Project',
+      budget: 'Budget',
+      timeline: 'Timeline',
+    };
+
+    const lines: string[] = [];
+    for (const key of Object.keys(labels)) {
+      const value = String(data.get(key) ?? '').trim();
+      if (value) lines.push(`${labels[key]}: ${value}`);
+    }
+
+    const subject = `Project inquiry — ${data.get('name') ?? 'SUE Agency'}`;
+    const body = lines.join('\n\n');
+    const url = `mailto:hello@sueagency.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (status) {
+      status.textContent = 'Opening your email client…';
+    }
+    window.location.href = url;
+  });
+</script>

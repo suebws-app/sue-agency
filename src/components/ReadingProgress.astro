@@ -1,0 +1,27 @@
+---
+---
+
+<div
+  class="pointer-events-none fixed left-0 right-0 top-18.25 z-[49] h-0.75"
+  aria-hidden="true"
+>
+  <div
+    id="reading-progress-fill"
+    class="h-full w-0 bg-accent transition-[width] duration-100 ease-linear"
+  ></div>
+</div>
+
+<script>
+  const fill = document.getElementById('reading-progress-fill');
+  if (fill) {
+    const update = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? Math.min(100, (h.scrollTop / max) * 100) : 0;
+      fill.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+</script>

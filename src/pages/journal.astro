@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Aurora from '../components/Aurora.astro';
+import PageHero from '../components/PageHero.astro';
+import CategoryFilter from '../components/CategoryFilter.astro';
+import FeaturedPost from '../components/FeaturedPost.astro';
+import PostGrid from '../components/PostGrid.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Journal — SUE Agency"
+  description="Field notes from the studio — performance deep-dives, headless architecture, design process, and the occasional strong opinion."
+>
+  <Nav activeLink="Journal" />
+  <main class="relative pt-18.25">
+    <Aurora variant="compact" />
+    <PageHero
+      eyebrow="The Journal"
+      title="Notes on building fast web."
+      titleAccent="fast"
+      description="Field notes from the studio — performance deep-dives, headless architecture, design process, and the occasional strong opinion."
+    />
+    <CategoryFilter />
+    <FeaturedPost />
+    <div class="offscreen">
+      <PostGrid />
+      <Newsletter />
+    </div>
+  </main>
+  <div class="offscreen">
+    <Footer />
+  </div>
+</Layout>

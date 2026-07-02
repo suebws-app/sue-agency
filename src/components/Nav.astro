@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import PillButton from './ui/PillButton.astro';
+import { cn } from '../lib/cn';
+
+interface Props {
+  activeLink?: 'Home' | 'Work' | 'Services' | 'Process' | 'Journal';
+}
+
+const { activeLink } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Home' as const },
+  { href: '/work', label: 'Work' as const },
+  { href: '/services', label: 'Services' as const },
+  { href: '/process', label: 'Process' as const },
+  { href: '/journal', label: 'Journal' as const },
+];
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b border-dark/10 backdrop-blur-md"
+  style="background: rgba(243, 243, 244, 0.78);"
+>
+  <nav class="mx-auto flex max-w-310 items-center justify-between gap-6 px-8 py-4.5">
+    <Logo href="/" />
+    <div class="hidden items-center gap-8.5 md:flex">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class={cn(
+            'text-[15px] no-underline hover:text-accent',
+            activeLink === link.label
+              ? 'font-semibold text-accent'
+              : 'font-medium text-dark',
+          )}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+    <PillButton href="/contact">Start a project</PillButton>
+  </nav>
+</header>

@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Aurora from '../components/Aurora.astro';
+import PageHero from '../components/PageHero.astro';
+import Process from '../components/Process.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'What if our scope is bigger than four weeks?',
+    a: 'We break it into four-week increments. Each one ends with a usable deliverable — no big-bang launches. Most engagements run one to three sprints back to back.',
+  },
+  {
+    q: 'Do you work on retainer after launch?',
+    a: 'Yes, for teams that want it. A monthly retainer covers performance monitoring, small improvements, and one deploy-day per week. Otherwise we hand off clean and step away.',
+  },
+  {
+    q: "How do you handle content that isn't ready?",
+    a: 'We design with real placeholder content from day one and swap it out as yours lands. Content is never on the critical path.',
+  },
+  {
+    q: 'What if we need to change direction mid-sprint?',
+    a: 'Weekly reviews are the pressure valve. Small pivots happen inside the sprint; larger ones get scheduled into the next one, with a fresh brief.',
+  },
+];
+---
+
+<Layout
+  title="Process — SUE Agency"
+  description="Four weeks from kickoff to launch. Discover, design, build, ship — the way we run every project."
+>
+  <Nav activeLink="Process" />
+  <main class="relative pt-18.25">
+    <Aurora variant="compact" />
+
+    <PageHero
+      eyebrow="How we work"
+      title="Four weeks to launch."
+      titleAccent="Four weeks"
+      description="A tight, transparent process. Discover, design, build, ship — with a working preview URL from week two, and a live site by week four."
+    />
+
+    <Process showHeader={false} />
+
+    <section class="relative z-10 mx-auto max-w-310 px-8 pt-20 pb-6">
+      <div
+        class="mb-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-accent"
+      >
+        Frequently asked
+      </div>
+      <h2
+        class="font-display m-0 mb-10 text-[clamp(28px,3.6vw,42px)] font-bold leading-none tracking-[-0.03em]"
+      >
+        Before we start.
+      </h2>
+      <div class="divide-y divide-dark/10 border-y border-dark/10">
+        {faqs.map((faq) => (
+          <div class="py-7">
+            <h3
+              class="font-display m-0 mb-3 text-[19px] font-bold tracking-[-0.02em]"
+            >
+              {faq.q}
+            </h3>
+            <p class="m-0 max-w-[60ch] text-base leading-[1.6] text-muted">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="offscreen">
+      <CTA />
+    </div>
+  </main>
+  <div class="offscreen">
+    <Footer />
+  </div>
+</Layout>

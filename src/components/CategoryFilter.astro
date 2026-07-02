@@ -1,0 +1,27 @@
+---
+import { cn } from '../lib/cn';
+import { categories } from '../data/posts';
+
+interface Props {
+  active?: string;
+}
+const { active = 'All' } = Astro.props;
+---
+
+<section class="relative z-10 mx-auto max-w-310 px-8 pb-9 pt-2">
+  <div class="flex flex-wrap gap-2.5">
+    {categories.map((cat) => (
+      <button
+        type="button"
+        class={cn(
+          'rounded-full px-4.5 py-2.25 text-sm transition-colors',
+          active === cat
+            ? 'bg-dark font-semibold text-bg'
+            : 'border border-dark/15 text-muted hover:border-dark',
+        )}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+</section>

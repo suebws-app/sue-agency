@@ -1,0 +1,14 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['animate-drift-slow pointer-events-none absolute inset-0', className]}
+  style="background:
+    radial-gradient(120% 130% at 20% 0%, rgba(255, 82, 51, 0.32), transparent 56%),
+    radial-gradient(90% 120% at 92% 30%, rgba(120, 110, 255, 0.24), transparent 52%);"
+  aria-hidden="true"
+></div>

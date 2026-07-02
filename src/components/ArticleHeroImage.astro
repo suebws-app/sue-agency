@@ -1,0 +1,35 @@
+---
+import type { Stat } from '../data/posts';
+import AuroraGlow from './ui/AuroraGlow.astro';
+import StatItem from './ui/StatItem.astro';
+
+interface Props {
+  stats?: Stat[];
+  bg?: string;
+}
+
+const { stats, bg } = Astro.props;
+---
+
+<div class="relative z-10 mx-auto mt-10 max-w-250 px-8">
+  <div
+    class="relative aspect-16/8 overflow-hidden rounded-[22px] border border-dark/10 shadow-[0_50px_90px_-50px_rgba(20,18,16,0.55)]"
+    style={stats ? 'background: var(--color-ink);' : bg ? `background: ${bg};` : 'background: var(--color-ink);'}
+  >
+    {stats ? (
+      <>
+        <AuroraGlow />
+        <div class="absolute inset-x-10 bottom-10 flex flex-wrap gap-11 text-bg">
+          {stats.map((stat) => (
+            <StatItem value={stat.value} label={stat.label} size="lg" />
+          ))}
+        </div>
+      </>
+    ) : (
+      <div
+        class="animate-drift-slow absolute inset-0 opacity-70 mix-blend-multiply"
+        aria-hidden="true"
+      ></div>
+    )}
+  </div>
+</div>
