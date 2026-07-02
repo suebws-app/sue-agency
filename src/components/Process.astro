@@ -6,26 +6,45 @@ interface Props {
 }
 const { showHeader = true } = Astro.props;
 
-const steps = [
+interface Step {
+  week: string;
+  title: string;
+  body: string;
+  services: string[];
+  ongoing?: boolean;
+}
+
+const steps: Step[] = [
   {
     week: 'Week 01',
     title: 'Discover',
-    body: 'Goals, audience, and audit of what you have today.',
+    body: 'Goals, audience, and an honest read on what you have today.',
+    services: ['Discovery Workshop', 'UX Audit', 'Technical Audit'],
   },
   {
     week: 'Week 02',
     title: 'Design',
-    body: 'Design system and key pages, prototyped live in the browser.',
+    body: 'Brand system and key pages, prototyped live in the browser.',
+    services: ['Branding', 'UX/UI Design', 'Web Design'],
   },
   {
     week: 'Week 03',
     title: 'Build',
     body: 'Composable frontend wired to your CMS, shipped to preview URLs.',
+    services: ['Modern Frontend', 'Headless CMS', 'Webflow'],
   },
   {
     week: 'Week 04',
     title: 'Launch',
-    body: 'Perf pass, QA, and a zero-downtime deploy — then we hand off clean.',
+    body: 'Perf pass, QA, and a zero-downtime deploy. Then a clean hand-off.',
+    services: ['Core Web Vitals', 'SEO & QA', 'Go-live'],
+  },
+  {
+    week: 'Ongoing',
+    title: 'Grow',
+    body: 'After launch we keep shipping. Optimization, monitoring, and growth as a retainer.',
+    services: ['CRO', 'Core Web Vitals', 'SMMA'],
+    ongoing: true,
   },
 ];
 ---
@@ -37,15 +56,15 @@ const steps = [
         <div>
           <Eyebrow onDark class="mb-4">How we work</Eyebrow>
           <h2
-            class="font-display m-0 max-w-[16ch] text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
+            class="font-display m-0 max-w-[18ch] text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
           >
-            Four weeks from kickoff to{' '}
-            <span class="font-serif italic font-normal text-accent-vivid">go-live.</span>
+            Four weeks to launch, then we keep{' '}
+            <span class="font-serif italic font-normal text-accent-vivid">shipping.</span>
           </h2>
         </div>
-        <p class="m-0 mb-1.5 max-w-[32ch] text-base text-cream/65">
-          A tight, transparent process. You see progress every week, in a real
-          environment.
+        <p class="m-0 mb-1.5 max-w-[34ch] text-base text-cream/65">
+          A tight, transparent process. You see progress every week in a real
+          environment, and the work does not stop at go-live.
         </p>
       </div>
     )}
@@ -54,9 +73,23 @@ const steps = [
       class="grid grid-cols-1 gap-px overflow-hidden rounded-[20px] border border-cream/15 bg-cream/15 sm:grid-cols-2 lg:grid-cols-4"
     >
       {steps.map((s) => (
-        <div class="bg-ink p-8">
-          <div class="font-display mb-10 text-[15px] font-bold text-accent-vivid">
-            {s.week}
+        <div
+          class:list={[
+            'flex flex-col p-8 bg-ink ',
+            s.ongoing
+              ? 'sm:col-span-2 lg:col-span-4'
+              : '',
+          ]}
+        >
+          <div class="font-display mb-10 flex items-center gap-2 text-[15px] font-bold text-accent-vivid">
+            <span>{s.week}</span>
+            {s.ongoing && (
+              <span
+                class="rounded-full border border-accent-vivid/40 px-2 py-0.5 text-[11px] uppercase tracking-[0.14em] text-accent-vivid/90"
+              >
+                Retainer
+              </span>
+            )}
           </div>
           <h3
             class="font-display m-0 mb-2.5 text-[22px] font-bold tracking-[-0.02em]"
@@ -64,6 +97,15 @@ const steps = [
             {s.title}
           </h3>
           <p class="m-0 text-sm leading-[1.55] text-cream/60">{s.body}</p>
+          <ul class="mt-6 flex flex-wrap gap-1.5 list-none p-0">
+            {s.services.map((svc) => (
+              <li
+                class="rounded-full border border-cream/15 px-2.5 py-1 text-[11px] uppercase tracking-widest text-cream/70"
+              >
+                {svc}
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>

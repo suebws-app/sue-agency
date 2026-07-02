@@ -44,7 +44,7 @@ const mara: Author = {
 const kai: Author = {
   name: 'Kai Rönne',
   role: 'Frontend Lead, SUE',
-  bio: 'Frontend lead at SUE. Ships composable, typed, tested — and cares more about DX than the average tech lead should.',
+  bio: 'Frontend lead at SUE. Ships composable, typed, tested, and cares more about DX than the average tech lead should.',
 };
 
 const sofia: Author = {
@@ -56,7 +56,7 @@ const sofia: Author = {
 const wren: Author = {
   name: 'Wren Ito',
   role: 'Studio Producer, SUE',
-  bio: 'Runs project rituals at SUE — from kickoff to launch. Writes about the parts of a build that never make the case study.',
+  bio: 'Runs project rituals at SUE, from kickoff to launch. Writes about the parts of a build that never make the case study.',
 };
 
 export const posts: Post[] = [
@@ -67,9 +67,9 @@ export const posts: Post[] = [
     title: 'How we shipped a 0.3s storefront on the edge',
     titleAccent: '0.3s',
     excerpt:
-      'A full breakdown of the Ceramic rebuild — from render strategy and image pipeline to the caching model that cut LCP by 4×.',
+      'A full breakdown of the Ceramic rebuild: render strategy, image pipeline, and the caching model that cut LCP by 4×.',
     description:
-      'A full breakdown of the Ceramic rebuild — render strategy, image pipeline, and the caching model that cut Largest Contentful Paint by 4×.',
+      'A full breakdown of the Ceramic rebuild: render strategy, image pipeline, and the caching model that cut Largest Contentful Paint by 4×.',
     date: 'June 28, 2026',
     read: '8 min read',
     bg: 'linear-gradient(150deg, #FFE7DE, #FFD0C2)',
@@ -83,7 +83,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          'Ceramic came to us with a storefront that looked great and felt slow. On a mid-range phone over 4G, the hero took well over a second to paint — and every 100ms of that was costing them checkouts. The brief was simple to state and hard to do: keep the design, make it disappear from the loading bar.',
+          'Ceramic came to us with a storefront that looked great and felt slow. On a mid-range phone over 4G, the hero took well over a second to paint, and every 100ms of that was costing them checkouts. The brief was simple to state and hard to do: keep the design, make it disappear from the loading bar.',
       },
       {
         type: 'p',
@@ -99,7 +99,7 @@ export const posts: Post[] = [
       {
         type: 'code',
         code:
-          "// astro.config.mjs — deploy the whole site to the edge\nexport default defineConfig({\n  output: 'server',\n  adapter: edge({ regions: 'all' }),\n});",
+          "// astro.config.mjs: deploy the whole site to the edge\nexport default defineConfig({\n  output: 'server',\n  adapter: edge({ regions: 'all' }),\n});",
       },
       {
         type: 'p',
@@ -129,7 +129,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          'LCP dropped from 1.2s to 0.3s at the 75th percentile, Lighthouse went to 100 on mobile, and — the number that actually mattered to Ceramic — conversion rose 41% in the first month. Same design, same content. Just faster.',
+          'LCP dropped from 1.2s to 0.3s at the 75th percentile, Lighthouse went to 100 on mobile, and, the number that actually mattered to Ceramic, conversion rose 41% in the first month. Same design, same content. Just faster.',
       },
       {
         type: 'p',
@@ -145,9 +145,9 @@ export const posts: Post[] = [
     title: 'Astro islands in production: what we actually ship',
     titleAccent: 'islands',
     excerpt:
-      'Partial hydration sounds great on paper. Here is where it earns its keep — and where it does not.',
+      'Partial hydration sounds great on paper. Here is where it earns its keep, and where it does not.',
     description:
-      'Partial hydration sounds great on paper. Here is where it earns its keep in production — and where it quietly gets in the way.',
+      'Partial hydration sounds great on paper. Here is where it earns its keep in production, and where it quietly gets in the way.',
     date: 'Jun 14, 2026',
     read: '6 min read',
     bg: 'linear-gradient(150deg, #E4EDE6, #CFE0D4)',
@@ -163,7 +163,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "For anything that is 90% content — marketing sites, storefronts, journals — islands are a superpower. The header can be static, the hero can be static, the product grid can be static, and the one modal that opens a size chart can hydrate with `client:visible`. The rest of the page ships zero JS.",
+          "For anything that is 90% content (marketing sites, storefronts, journals) islands are a superpower. The header can be static, the hero can be static, the product grid can be static, and the one modal that opens a size chart can hydrate with `client:visible`. The rest of the page ships zero JS.",
       },
       {
         type: 'code',
@@ -174,7 +174,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "The moment your page needs to share state across three islands, you are working against the model. Global state, cross-island events, and shared stores all become friction. That's a signal — it's usually a full SPA route, not an island.",
+          "The moment your page needs to share state across three islands, you are working against the model. Global state, cross-island events, and shared stores all become friction. That's a signal: it's usually a full SPA route, not an island.",
       },
       {
         type: 'quote',
@@ -185,7 +185,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "One island per interactive surface. If two surfaces need to coordinate, either merge them into one island or move the whole route to a framework page. Do not build islands that pretend to be a SPA — you get the worst of both.",
+          "One island per interactive surface. If two surfaces need to coordinate, either merge them into one island or move the whole route to a framework page. Do not build islands that pretend to be a SPA, or you get the worst of both.",
       },
     ],
   },
@@ -196,7 +196,7 @@ export const posts: Post[] = [
     title: 'Designing in the browser, not the mockup',
     titleAccent: 'browser',
     excerpt:
-      'Why we prototype live and skip pixel-perfect comps — and how it speeds up sign-off.',
+      'Why we prototype live and skip pixel-perfect comps, and how it speeds up sign-off.',
     description:
       'Why we prototype live in code, skip pixel-perfect comps, and how it speeds up sign-off with real clients.',
     date: 'Jun 02, 2026',
@@ -208,7 +208,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "The tension in any web project is that the deliverable is code, but the review artifact is a picture. Every round of feedback on a static comp is feedback on something that will never exist — and every round is a delay.",
+          "The tension in any web project is that the deliverable is code, but the review artifact is a picture. Every round of feedback on a static comp is feedback on something that will never exist, and every round is a delay.",
       },
       { type: 'h2', text: 'Static comps are lying to you' },
       {
@@ -220,7 +220,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "We build the design system as code in week one — colors, type, spacing, primitives — and prototype pages in the browser from week two. Clients see a real URL, on a real device, in every state. Feedback becomes concrete.",
+          "We build the design system as code in week one (colors, type, spacing, primitives) and prototype pages in the browser from week two. Clients see a real URL, on a real device, in every state. Feedback becomes concrete.",
       },
       {
         type: 'ul',
@@ -307,9 +307,9 @@ export const posts: Post[] = [
     title: 'Choosing a headless CMS without regret',
     titleAccent: 'without regret',
     excerpt:
-      'Sanity, Contentful, Payload — a decision framework based on the teams who maintain it.',
+      'Sanity, Contentful, Payload: a decision framework based on the teams who maintain it.',
     description:
-      'Sanity, Contentful, Payload — a decision framework built on the teams who have to live with the choice.',
+      'Sanity, Contentful, Payload: a decision framework built on the teams who have to live with the choice.',
     date: 'May 08, 2026',
     read: '7 min read',
     bg: 'linear-gradient(150deg, #FBEFD6, #F4E0B4)',
@@ -348,7 +348,7 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "We look at who is going to use it every day. If the answer is a marketing team who will not touch the schema, Contentful. If it is a product team who wants the model to grow with them, Sanity or Payload. If uncertain — Sanity, because escaping it later is the least painful.",
+          "We look at who is going to use it every day. If the answer is a marketing team who will not touch the schema, Contentful. If it is a product team who wants the model to grow with them, Sanity or Payload. If uncertain, Sanity, because escaping it later is the least painful.",
       },
     ],
   },
@@ -359,9 +359,9 @@ export const posts: Post[] = [
     title: 'How we run a four-week build sprint',
     titleAccent: 'four-week',
     excerpt:
-      'The exact cadence — discover, design, build, launch — and the rituals that keep it honest.',
+      'The exact cadence (discover, design, build, launch) and the rituals that keep it honest.',
     description:
-      "The exact cadence — discover, design, build, launch — and the rituals that keep it honest. What we do in each week, and why.",
+      "The exact cadence (discover, design, build, launch) and the rituals that keep it honest. What we do in each week, and why.",
     date: 'Apr 25, 2026',
     read: '4 min read',
     bg: 'linear-gradient(150deg, #E4EDE6, #CFE0D4)',
@@ -373,29 +373,29 @@ export const posts: Post[] = [
         text:
           "Four weeks is short enough to force decisions and long enough to actually ship. Here is the shape of the sprint we run for most engagements.",
       },
-      { type: 'h2', text: 'Week 1 — Discover' },
+      { type: 'h2', text: 'Week 1. Discover' },
       {
         type: 'p',
         text:
           "Goals, audience, existing analytics, an audit of what is there today. We end the week with a one-page brief that everyone signs off on. If the brief takes longer than a week, the project is too big.",
       },
-      { type: 'h2', text: 'Week 2 — Design' },
+      { type: 'h2', text: 'Week 2. Design' },
       {
         type: 'p',
         text:
           "Design system in code, key pages prototyped live in the browser. Client review happens on a URL, not in Figma. By Friday, the design system covers 80% of the site's surface area.",
       },
-      { type: 'h2', text: 'Week 3 — Build' },
+      { type: 'h2', text: 'Week 3. Build' },
       {
         type: 'p',
         text:
           "Composable frontend wired to the CMS, deploy previews per PR. Content team starts filling the site in parallel. QA rides along, not at the end.",
       },
-      { type: 'h2', text: 'Week 4 — Launch' },
+      { type: 'h2', text: 'Week 4. Launch' },
       {
         type: 'p',
         text:
-          "Perf pass, cross-device QA, DNS, monitoring, launch. Then a clean handoff — including a runbook for the on-call engineer we will never be.",
+          "Perf pass, cross-device QA, DNS, monitoring, launch. Then a clean handoff, including a runbook for the on-call engineer we will never be.",
       },
       {
         type: 'quote',
@@ -413,7 +413,7 @@ export const posts: Post[] = [
     excerpt:
       'AVIF, responsive sizes, and a pipeline that makes the right thing the default thing.',
     description:
-      'AVIF, responsive sizes, and a pipeline that makes the right thing the default thing — even for the content team.',
+      'AVIF, responsive sizes, and a pipeline that makes the right thing the default thing, even for the content team.',
     date: 'Apr 11, 2026',
     read: '6 min read',
     bg: 'linear-gradient(150deg, #FFE7DE, #FFD0C2)',
@@ -429,13 +429,13 @@ export const posts: Post[] = [
       {
         type: 'p',
         text:
-          "AVIF beats WebP beats JPEG on file size at equal quality, but not every browser wants AVIF. A `<picture>` element with the right sources lets each browser pick its own path — and cuts weight in half without touching design.",
+          "AVIF beats WebP beats JPEG on file size at equal quality, but not every browser wants AVIF. A `<picture>` element with the right sources lets each browser pick its own path, and cuts weight in half without touching design.",
       },
       { type: 'h2', text: 'Size to the layout, not the source' },
       {
         type: 'p',
         text:
-          "A 2400px source served into a 400px slot is 6x more pixels than the browser will ever show. Generate a proper `srcset` from the layout — not from a static config — and let the browser choose.",
+          "A 2400px source served into a 400px slot is 6x more pixels than the browser will ever show. Generate a proper `srcset` from the layout (not from a static config) and let the browser choose.",
       },
       {
         type: 'code',
@@ -459,10 +459,7 @@ export const posts: Post[] = [
 
 export const categories: Array<'All' | PostTag> = [
   'All',
-  'Performance',
-  'Engineering',
-  'Design',
-  'Studio',
+  ...(Array.from(new Set(posts.map((p) => p.tag))) as PostTag[]),
 ];
 
 export function getFeaturedPost(): Post {

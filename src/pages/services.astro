@@ -4,11 +4,12 @@ import Nav from '../components/Nav.astro';
 import Aurora from '../components/Aurora.astro';
 import PageHero from '../components/PageHero.astro';
 import Services from '../components/Services.astro';
+import ServiceCatalog from '../components/ServiceCatalog.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 
 const includes = [
-  'A design system documented in code — your team can extend it',
+  'A design system documented in code that your team can extend',
   'Automated Lighthouse checks on every pull request',
   'WCAG 2.2 AA accessibility audit before launch',
   'Analytics + Core Web Vitals monitoring wired up on day one',
@@ -17,8 +18,8 @@ const includes = [
 ---
 
 <Layout
-  title="Services — SUE Agency"
-  description="Design, engineering, headless CMS, and performance — full-stack web from one studio."
+  title="Services | SUE Agency"
+  description="Design, engineering, headless CMS, and performance. Full-stack web from one studio."
 >
   <Nav activeLink="Services" />
   <main class="relative pt-18.25">
@@ -28,10 +29,12 @@ const includes = [
       eyebrow="What we do"
       title="Full-stack web, minus the bloat."
       titleAccent="Full-stack"
-      description="Design, engineering, and content — one team, one bill, one launch. From first pixel to production, we own the whole pipeline."
+      description="Design, engineering, and content: one team, one bill, one launch. From first pixel to production, we own the whole pipeline."
     />
 
     <Services showHeader={false} />
+
+    <ServiceCatalog />
 
     <section class="relative z-10 mx-auto max-w-310 px-8 pt-16 pb-6">
       <div class="rounded-[22px] border border-dark/10 bg-card p-10">

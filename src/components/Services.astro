@@ -10,26 +10,38 @@ const services = [
   {
     num: '01',
     title: 'Web Design',
-    body: 'Editorial, brand-led interfaces designed in the browser — not just static mockups.',
+    body: 'Editorial, brand-led interfaces prototyped live so you sign off on the real thing, not a picture of it.',
     meta: 'Systems · UX · Prototyping',
   },
   {
     num: '02',
-    title: 'Frontend Engineering',
-    body: 'Composable frontends in React, Astro, and Next — accessible, typed, and tested.',
-    meta: 'React · Astro · Edge',
+    title: 'Full-stack Engineering',
+    body: 'React, Astro, and Next on the front. Node with tRPC or REST, Postgres, and auth on the back. Typed end to end, tested, and deployed to the edge.',
+    meta: ['React · Astro · Next', 'Node · tRPC · Postgres · Auth'],
   },
   {
     num: '03',
     title: 'Headless CMS',
-    body: 'Content models your team actually enjoys — Sanity, Contentful, or your stack.',
+    body: 'Sanity, Contentful, or Payload models that editors actually reach for. Structured, previewable, boring in the best way.',
     meta: 'Sanity · Contentful · DXP',
   },
   {
     num: '04',
     title: 'Performance & SEO',
-    body: 'Core Web Vitals in the green, technical SEO baked in, Lighthouse at 100.',
+    body: 'Green Core Web Vitals, technical SEO baked in, and Lighthouse 100 on the pages that pay the bills.',
     meta: 'CWV · Audits · Growth',
+  },
+  {
+    num: '05',
+    title: 'SMMA',
+    body: 'Social-first campaigns and paid growth wired straight into the site we shipped, so channel spend compounds.',
+    meta: 'Social · Content · Ads',
+  },
+  {
+    num: '06',
+    title: 'Consulting',
+    body: 'Discovery, UX and technical audits before the first commit, so the build starts from a plan instead of a hunch.',
+    meta: 'Discovery · Audits · Strategy',
   },
 ];
 ---
@@ -46,13 +58,13 @@ const services = [
         </h2>
       </div>
       <p class="m-0 mb-1.5 max-w-[34ch] text-base text-muted">
-        From first pixel to production, we own the whole pipeline — so nothing
+        From first pixel to production, we own the whole pipeline, so nothing
         gets lost between design and deploy.
       </p>
     </div>
   )}
 
-  <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {services.map((s) => (
       <article
         class="transition-all duration-300 ease-out flex min-h-65 flex-col gap-4 rounded-[18px] border border-dark/10 bg-card p-7.5 hover:-translate-y-1 hover:border-dark/15 hover:shadow-[0_26px_50px_-30px_rgba(26,22,17,0.32)]"
@@ -62,7 +74,13 @@ const services = [
           {s.title}
         </h3>
         <p class="m-0 text-[15px] leading-[1.55] text-muted">{s.body}</p>
-        <div class="mt-auto text-sm text-subtle">{s.meta}</div>
+        {Array.isArray(s.meta) ? (
+          <div class="mt-auto flex flex-col gap-1 text-sm text-subtle">
+            {s.meta.map((line) => <div>{line}</div>)}
+          </div>
+        ) : (
+          <div class="mt-auto text-sm text-subtle">{s.meta}</div>
+        )}
       </article>
     ))}
   </div>

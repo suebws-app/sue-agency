@@ -19,7 +19,7 @@ function renderInline(s: string): string {
 }
 
 // Very light server-side JS syntax highlighting for code blocks.
-// Order: comments first, then strings — placeholders keep them from
+// Order: comments first, then strings; placeholders keep them from
 // re-matching each other.
 function renderCode(s: string): string {
   const escaped = escape(s);

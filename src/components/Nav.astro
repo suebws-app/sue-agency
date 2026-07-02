@@ -64,28 +64,61 @@ const links = [
       </button>
     </div>
   </nav>
-  <div
-    id="mobile-menu"
-    class="hidden overflow-hidden border-t border-dark/10 bg-cream/95 backdrop-blur-md md:hidden"
-  >
-    <div class="mx-auto flex max-w-310 flex-col gap-1 px-8 py-4">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          class={cn(
-            'rounded-lg px-3 py-3 text-base no-underline hover:bg-dark/5 hover:text-accent',
-            activeLink === link.label
-              ? 'font-semibold text-accent'
-              : 'font-medium text-dark',
-          )}
-        >
-          {link.label}
-        </a>
-      ))}
-      <PillButton href="/contact" class="mt-3 text-center sm:hidden">Start a project</PillButton>
+  <div id="mobile-menu" class="mobile-menu md:hidden">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-panel border-t border-dark/10 bg-cream/95 backdrop-blur-md">
+        <div class="mx-auto flex max-w-310 flex-col gap-1 px-8 py-4">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class={cn(
+                'rounded-lg px-3 py-3 text-base no-underline hover:bg-dark/5 hover:text-accent',
+                activeLink === link.label
+                  ? 'font-semibold text-accent'
+                  : 'font-medium text-dark',
+              )}
+            >
+              {link.label}
+            </a>
+          ))}
+          <PillButton href="/contact" class="mt-3 text-center sm:hidden">Start a project</PillButton>
+        </div>
+      </div>
     </div>
   </div>
 </header>
+
+<style>
+  .mobile-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mobile-menu.open {
+    grid-template-rows: 1fr;
+  }
+  .mobile-menu-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .mobile-menu-panel {
+    transform: translateY(-8px);
+    opacity: 0;
+    transition:
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mobile-menu.open .mobile-menu-panel {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu-panel {
+      transition: none;
+    }
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('mobile-menu-toggle');
@@ -96,7 +129,7 @@ const links = [
     if (!toggle || !menu) return;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    menu.classList.toggle('hidden', !open);
+    menu.classList.toggle('open', open);
     const [top, middle, bottom] = bars;
     if (top && middle && bottom) {
       top.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';

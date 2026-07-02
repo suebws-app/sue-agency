@@ -9,12 +9,11 @@ import Footer from '../components/Footer.astro';
 import { getAllCases } from '../data/cases';
 
 const list = getAllCases();
-const years = [...new Set(list.map((c) => c.year))].sort((a, b) => b - a);
 ---
 
 <Layout
-  title="Work — SUE Agency"
-  description="Selected case studies from the SUE studio — sites shipped fast, on the edge, with Lighthouse 100."
+  title="Work | SUE Agency"
+  description="Selected case studies from the SUE studio. Sites shipped fast, on the edge, with Lighthouse 100."
 >
   <Nav activeLink="Work" />
   <main class="relative pt-18.25">
@@ -24,29 +23,14 @@ const years = [...new Set(list.map((c) => c.year))].sort((a, b) => b - a);
       eyebrow="Selected work"
       title="Every project we've shipped."
       titleAccent="shipped"
-      description="A cross-section of the sites we've built — DTC storefronts, editorial platforms, SaaS dashboards, and B2B marketing. All shipped fast, on the edge, at Lighthouse 100."
+      description="A cross-section of the sites we've built: DTC storefronts, editorial platforms, SaaS dashboards, and B2B marketing. All shipped fast, on the edge, at Lighthouse 100."
     />
 
-    {years.map((year) => {
-      const yearCases = list.filter((c) => c.year === year);
-      return (
-        <section class="relative z-10 mx-auto max-w-310 px-8 pt-6 pb-10">
-          <div class="mb-8 flex items-end justify-between gap-6">
-            <h2
-              class="font-display m-0 text-[clamp(22px,3vw,32px)] font-bold leading-none tracking-[-0.02em]"
-            >
-              {year}
-            </h2>
-            <span class="text-sm text-subtle">
-              {yearCases.length} project{yearCases.length === 1 ? '' : 's'}
-            </span>
-          </div>
-          <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5.5">
-            {yearCases.map((c) => <CaseCard post={c} />)}
-          </div>
-        </section>
-      );
-    })}
+    <section class="relative z-10 mx-auto max-w-310 px-8 pt-6 pb-10">
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5.5">
+        {list.map((c) => <CaseCard post={c} />)}
+      </div>
+    </section>
 
     <div class="offscreen">
       <CTA />

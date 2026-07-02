@@ -25,7 +25,7 @@ const nextSteps = [
 ---
 
 <Layout
-  title="Contact — SUE Agency"
+  title="Contact | SUE Agency"
   description="Start a project with SUE. Tell us what you're building and we'll reply within two business days."
 >
   <Nav />
@@ -222,7 +222,7 @@ const nextSteps = [
       if (value) lines.push(`${labels[key]}: ${value}`);
     }
 
-    const subject = `Project inquiry — ${data.get('name') ?? 'SUE Agency'}`;
+    const subject = `Project inquiry from ${data.get('name') ?? 'SUE Agency'}`;
     const body = lines.join('\n\n');
     const url = `mailto:hello@sueagency.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 

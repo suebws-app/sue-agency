@@ -9,7 +9,10 @@ const featured = getFeaturedPost();
 const stats = featured.heroStats ?? [];
 ---
 
-<section class="relative z-10 mx-auto max-w-310 px-8 pb-5">
+<section
+  class="relative z-10 mx-auto max-w-310 px-8 pb-5"
+  data-featured-hero
+>
   <a
     href={`/journal/${featured.slug}`}
     class="group grid grid-cols-1 gap-0 overflow-hidden rounded-[22px] transition-all duration-300 ease-out border border-dark/10 bg-card no-underline lg:grid-cols-[1.1fr_1fr] hover:-translate-y-1 hover:shadow-[0_34px_60px_-34px_rgba(26,22,17,0.4)]"
