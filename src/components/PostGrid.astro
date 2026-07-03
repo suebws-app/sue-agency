@@ -3,12 +3,14 @@ import PostCard from './PostCard.astro';
 import { posts } from '../data/posts';
 ---
 
-<section id="journal" class="relative z-10 mx-auto max-w-310 px-8 pb-10 pt-9">
-  <div class="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-5.5">
-    {posts.map((post) => (
-      <div data-post-tag={post.tag} data-featured={post.featured ? 'true' : 'false'}>
-        <PostCard post={post} />
-      </div>
-    ))}
+<section id="journal" class="relative z-10 mx-auto max-w-310 px-8 pt-9 pb-10">
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-5.5" data-reveal-stagger>
+    {
+      posts.map((post) => (
+        <div data-post-tag={post.tag} data-featured={post.featured ? 'true' : 'false'}>
+          <PostCard post={post} />
+        </div>
+      ))
+    }
   </div>
 </section>

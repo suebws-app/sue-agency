@@ -12,7 +12,7 @@ const list = getAllCases();
 ---
 
 <Layout
-  title="Work | SUE Agency"
+  title="Work - SUE Agency"
   description="Selected case studies from the SUE studio. Sites shipped fast, on the edge, with Lighthouse 100."
 >
   <Nav activeLink="Work" />
@@ -27,7 +27,7 @@ const list = getAllCases();
     />
 
     <section class="relative z-10 mx-auto max-w-310 px-8 pt-6 pb-10">
-      <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5.5">
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5.5" data-reveal-stagger>
         {list.map((c) => <CaseCard post={c} />)}
       </div>
     </section>

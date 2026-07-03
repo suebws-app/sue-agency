@@ -26,10 +26,7 @@ const { post } = Astro.props;
 const related = getRelatedPosts(post.slug, 3);
 ---
 
-<Layout
-  title={`${post.title} | SUE Journal`}
-  description={post.description}
->
+<Layout title={`${post.title} - SUE Journal`} description={post.description}>
   <Nav activeLink="Journal" />
   <ReadingProgress />
   <main class="relative pt-18.25">

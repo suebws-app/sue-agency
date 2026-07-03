@@ -9,39 +9,35 @@ const featured = getFeaturedPost();
 const stats = featured.heroStats ?? [];
 ---
 
-<section
-  class="relative z-10 mx-auto max-w-310 px-8 pb-5"
-  data-featured-hero
->
+<section class="relative z-10 mx-auto max-w-310 px-8 pb-5" data-featured-hero>
   <a
     href={`/journal/${featured.slug}`}
-    class="group grid grid-cols-1 gap-0 overflow-hidden rounded-[22px] transition-all duration-300 ease-out border border-dark/10 bg-card no-underline lg:grid-cols-[1.1fr_1fr] hover:-translate-y-1 hover:shadow-[0_34px_60px_-34px_rgba(26,22,17,0.4)]"
+    class="group border-dark/10 bg-card grid grid-cols-1 gap-0 overflow-hidden rounded-[22px] border no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_34px_60px_-34px_rgba(26,22,17,0.4)] lg:grid-cols-[1.1fr_1fr]"
+    data-reveal
   >
-    <div class="relative min-h-85 overflow-hidden bg-ink">
+    <div class="bg-ink relative min-h-85 overflow-hidden">
       <AuroraGlow />
-      <div class="absolute inset-x-8 bottom-8 flex gap-6.5 text-bg">
-        {stats.map((stat) => (
-          <StatItem value={stat.value} label={stat.label} size="md" />
-        ))}
+      <div class="text-bg absolute inset-x-8 bottom-8 flex gap-6.5">
+        {stats.map((stat) => <StatItem value={stat.value} label={stat.label} size="md" />)}
       </div>
     </div>
 
-    <div class="flex flex-col justify-center p-10 text-dark">
+    <div class="text-dark flex flex-col justify-center p-10">
       <div class="mb-4 flex items-center gap-2">
         <Tag variant="accent">Featured</Tag>
         <Tag>{featured.tag}</Tag>
       </div>
       <h2
-        class="font-display m-0 mb-3.5 text-[clamp(26px,3vw,38px)] font-bold leading-[1.04] tracking-tight"
+        class="font-display m-0 mb-3.5 text-[clamp(26px,3vw,38px)] leading-[1.04] font-bold tracking-tight"
       >
         {featured.title}
       </h2>
-      <p class="m-0 mb-6 text-base leading-[1.6] text-muted">
+      <p class="text-muted m-0 mb-6 text-base leading-[1.6]">
         {featured.excerpt}
       </p>
-      <div class="flex items-center gap-3 text-sm text-subtle">
+      <div class="text-subtle flex items-center gap-3 text-sm">
         <GradientAvatar size={34} />
-        <span class="font-semibold text-dark">{featured.author.name}</span>
+        <span class="text-dark font-semibold">{featured.author.name}</span>
         <span aria-hidden="true">·</span>
         <span>{featured.date}</span>
         <span aria-hidden="true">·</span>

@@ -1,200 +1,63 @@
 ---
 import Eyebrow from './ui/Eyebrow.astro';
-
-interface Item {
-  letter: string;
-  title: string;
-  question: string;
-  body: string;
-}
-
-interface Group {
-  label: string;
-  items: Item[];
-}
-
-const groups: Group[] = [
-  {
-    label: 'Consulting',
-    items: [
-      {
-        letter: 'A',
-        title: 'Discovery Workshop',
-        question: 'Not sure what to build next, or whether to build at all?',
-        body:
-          'One focused session with your team to map goals, users, and what the current product is really doing. You leave with a one-page brief that both the boardroom and the eng team can act on.',
-      },
-      {
-        letter: 'B',
-        title: 'UX Audit',
-        question: 'Traffic is fine, but people aren\'t converting or coming back?',
-        body:
-          'We walk your critical flows the way a real customer would, then trace where friction lives: nav, forms, information architecture, and content clarity. You get a prioritized fix list, ranked by cost and impact.',
-      },
-      {
-        letter: 'C',
-        title: 'Technical Audit',
-        question: 'Something under the hood feels off, but no one owns it?',
-        body:
-          'A pragmatic look at architecture, bundle strategy, rendering model, and dependency risk. We deliver a written report with a fix roadmap and an honest read on which pieces to keep, replace, or forget about.',
-      },
-    ],
-  },
-  {
-    label: 'Design',
-    items: [
-      {
-        letter: 'A',
-        title: 'Branding',
-        question: 'Your brand assets don\'t line up on the web anymore?',
-        body:
-          'We translate identity into a working system: type scale, color, spacing, motion, and voice. The output is design tokens and guidance your marketing and product teams can both build on.',
-      },
-      {
-        letter: 'B',
-        title: 'UX/UI Design',
-        question: 'The product works, but flows feel heavy?',
-        body:
-          'We map the tasks that matter, redesign them around the shortest sensible path, and prototype in the browser so decisions are made on real interaction, not static pixels.',
-      },
-      {
-        letter: 'C',
-        title: 'Web Design',
-        question: 'Your site looks fine, but it isn\'t doing much for you?',
-        body:
-          'A brand-forward site built around the pages that convert. Editorial layout, tight typography, real interaction, responsive down to the last breakpoint, and calibrated to your growth goals.',
-      },
-      {
-        letter: 'D',
-        title: 'Product Design',
-        question: 'Building an app or dashboard your team keeps going back to?',
-        body:
-          'End-to-end product design for SaaS, tools, and dashboards. Research, flow modeling, prototyping, and design systems, delivered with the engineering team, not tossed over a wall.',
-      },
-    ],
-  },
-  {
-    label: 'Development',
-    items: [
-      {
-        letter: 'A',
-        title: 'Modern Frontend Development',
-        question: 'Site should feel fast on a phone in the wild, not just in a demo?',
-        body:
-          'Composable frontends in React, Astro, or Next, wired to the edge and typed end to end. We ship components with states, tests, and stories, so the codebase compounds instead of decays.',
-      },
-      {
-        letter: 'B',
-        title: 'Headless CMS Implementation & Migration',
-        question: 'Ready to move off a monolith or set up a new content stack?',
-        body:
-          'We model your content, pick the right platform for the team that will live in it, and migrate without a maintenance window. Preview, roles, and localization included, not bolted on.',
-      },
-      {
-        letter: 'C',
-        title: 'Webflow Development',
-        question: 'Want the marketing team to ship pages without a ticket?',
-        body:
-          'Webflow builds that respect performance and accessibility. Structured CMS collections, custom interactions, and a hand-off doc so your team can extend the site instead of fearing it.',
-      },
-    ],
-  },
-  {
-    label: 'Maintenance',
-    items: [
-      {
-        letter: 'A',
-        title: 'Conversion Rate Optimization',
-        question: 'Traffic is up, revenue isn\'t following?',
-        body:
-          'Data-backed CRO: instrument the funnel, form hypotheses from real behavior, ship A/B tests, and lock in the wins. Wins compound month over month instead of getting overwritten by the next redesign.',
-      },
-      {
-        letter: 'B',
-        title: 'Core Web Vitals Optimization',
-        question: 'Search Console keeps flagging LCP, CLS, or INP?',
-        body:
-          'A targeted engagement to move each metric into the green and keep it there. Image and font pipelines, main-thread budget, and a lightweight monitoring setup so regressions surface early.',
-      },
-      {
-        letter: 'C',
-        title: 'Headless CMS Optimization',
-        question: 'Editors slow, cache flaky, preview broken?',
-        body:
-          'We tune existing headless stacks: schema, GROQ or GraphQL queries, ISR and edge caching, and preview flow, so the CMS feels as fast to editors as the site does to visitors.',
-      },
-    ],
-  },
-];
+import { serviceCatalog } from '../data/services';
 ---
 
-<section class="relative z-10 mx-auto max-w-310 px-8 pb-6 pt-20">
-  <div class="mb-11.5 max-w-[46ch]">
+<section class="relative z-10 mx-auto max-w-310 px-8 pt-20 pb-6">
+  <div class="mb-11.5 max-w-[46ch]" data-reveal>
     <Eyebrow class="mb-4">In detail</Eyebrow>
     <h2
-      class="font-display m-0 text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
+      class="font-display m-0 text-[clamp(32px,4.6vw,60px)] leading-none font-bold tracking-[-0.03em]"
     >
       Every engagement, unpacked.
     </h2>
-    <p class="mt-5 text-base text-muted">
-      A closer look at what we ship inside each phase. Pick the pieces your
-      team needs, mix them, or take the whole four-week sprint.
+    <p class="text-muted mt-5 text-base">
+      A closer look at what we ship inside each phase. Pick the pieces your team needs, mix them, or
+      take the whole four-week sprint.
     </p>
   </div>
 
   <div class="flex flex-col gap-16">
-    {groups.map((group) => (
-      <div>
-        <div
-          class="mb-6 flex items-baseline justify-between gap-4 border-b border-dark/10 pb-4"
-        >
-          <h3
-            class="font-display m-0 text-[clamp(20px,2.4vw,26px)] font-bold tracking-[-0.02em] text-dark"
-          >
-            {group.label}
-          </h3>
-          <span class="text-[13px] uppercase tracking-[0.14em] text-subtle">
-            {group.items.length} service{group.items.length === 1 ? '' : 's'}
-          </span>
-        </div>
-        <div class="columns-1 gap-4 md:columns-2">
-          {group.items.map((item) => (
-            <details
-              class="group mb-4 block break-inside-avoid rounded-[18px] border border-dark/10 bg-card p-6 transition-colors open:border-dark/20 hover:border-dark/20"
-            >
-              <summary
-                class="flex cursor-pointer list-none items-start gap-4 [&::-webkit-details-marker]:hidden"
-              >
-                <span
-                  class="font-display flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-dark/15 text-sm font-bold text-accent"
-                  aria-hidden="true"
-                >
-                  {item.letter}
-                </span>
-                <div class="min-w-0 flex-1">
-                  <div
-                    class="font-display text-lg font-bold tracking-[-0.01em] text-dark"
+    {
+      serviceCatalog.map((group) => (
+        <div data-reveal>
+          <div class="border-dark/10 mb-6 flex items-baseline justify-between gap-4 border-b pb-4">
+            <h3 class="font-display text-dark m-0 text-[clamp(20px,2.4vw,26px)] font-bold tracking-[-0.02em]">
+              {group.label}
+            </h3>
+            <span class="text-subtle text-[13px] tracking-[0.14em] uppercase">
+              {group.items.length} service{group.items.length === 1 ? '' : 's'}
+            </span>
+          </div>
+          <div class="columns-1 gap-4 md:columns-2">
+            {group.items.map((item) => (
+              <details class="group border-dark/10 bg-card open:border-dark/20 hover:border-dark/20 mb-4 block break-inside-avoid rounded-[18px] border p-6 transition-colors">
+                <summary class="flex cursor-pointer list-none items-start gap-4 [&::-webkit-details-marker]:hidden">
+                  <span
+                    class="font-display border-dark/15 text-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-sm font-bold"
+                    aria-hidden="true"
                   >
-                    {item.title}
+                    {item.letter}
+                  </span>
+                  <div class="min-w-0 flex-1">
+                    <div class="font-display text-dark text-lg font-bold tracking-[-0.01em]">
+                      {item.title}
+                    </div>
+                    <p class="text-muted m-0 mt-1.5 text-[15px] leading-normal">{item.question}</p>
                   </div>
-                  <p class="mt-1.5 m-0 text-[15px] leading-normal text-muted">
-                    {item.question}
-                  </p>
-                </div>
-                <span
-                  class="mt-1.5 shrink-0 text-lg leading-none text-subtle transition-transform group-open:rotate-45"
-                  aria-hidden="true"
-                >
-                  +
-                </span>
-              </summary>
-              <p class="mt-5 pl-13 m-0 text-[15px] leading-[1.6] text-muted">
-                {item.body}
-              </p>
-            </details>
-          ))}
+                  <span
+                    class="text-subtle mt-1.5 shrink-0 text-lg leading-none transition-transform group-open:rotate-45"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p class="text-muted m-0 mt-5 pl-13 text-[15px] leading-[1.6]">{item.body}</p>
+              </details>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </section>

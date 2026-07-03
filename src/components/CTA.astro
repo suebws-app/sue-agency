@@ -3,24 +3,22 @@ import PillButton from './ui/PillButton.astro';
 ---
 
 <section id="contact" class="relative z-10 mx-auto max-w-310 px-8 py-26">
-  <div class="flex flex-col items-center gap-7 text-center">
+  <div class="flex flex-col items-center gap-7 text-center" data-reveal-stagger>
     <h2
-      class="font-display m-0 max-w-[15ch] text-[clamp(40px,7vw,96px)] font-bold leading-[0.98] tracking-[-0.035em]"
+      class="font-display m-0 max-w-[15ch] text-[clamp(40px,7vw,96px)] leading-[0.98] font-bold tracking-[-0.035em]"
     >
       Let's build something{' '}
-      <span class="font-serif italic font-normal text-accent">fast.</span>
+      <span class="text-accent font-serif font-normal italic">fast.</span>
     </h2>
-    <p class="m-0 max-w-[44ch] text-lg text-muted">
-      Tell us about your project. We'll come back within two business days with a
-      plan and a ballpark.
+    <p class="text-muted m-0 max-w-[44ch] text-lg">
+      Tell us about your project. We'll come back within two business days with a plan and a
+      ballpark.
     </p>
     <div class="flex flex-wrap justify-center gap-3">
-      <PillButton href="mailto:hello@sueagency.com" size="lg">
-        hello@sueagency.com
-      </PillButton>
+      <PillButton href="mailto:hello@sueagency.com" size="lg"> hello@sueagency.com </PillButton>
       <a
         href="/contact"
-        class="rounded-full border border-dark/20 bg-transparent px-7.5 py-4 text-base font-semibold text-dark no-underline hover:border-dark"
+        class="border-dark/20 text-dark hover:border-dark rounded-full border bg-transparent px-7.5 py-4 text-base font-semibold no-underline"
       >
         Book a call →
       </a>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-  title = 'SUE Agency | Fast websites for brands that can\'t slow down',
+  title = "SUE Agency - Fast websites for brands that can't slow down",
   description = 'SUE is a web studio crafting high-performance, composable sites. Engineered for speed, designed to convert, and built to scale.',
 } = Astro.props;
 ---
@@ -29,8 +29,43 @@ const {
     <Font cssVariable="--font-sans" />
     <Font cssVariable="--font-serif" preload />
     <title>{title}</title>
+    <noscript>
+      <style>
+        [data-reveal],
+        [data-reveal-stagger] > * {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <slot />
+    <script is:inline>
+      (() => {
+        const targets = document.querySelectorAll('[data-reveal], [data-reveal-stagger]');
+        if (!targets.length) return;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) {
+          targets.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.05 },
+        );
+
+        targets.forEach((el) => io.observe(el));
+      })();
+    </script>
   </body>
 </html>

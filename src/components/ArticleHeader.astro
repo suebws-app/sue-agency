@@ -14,16 +14,7 @@ interface Props {
   description: string;
 }
 
-const {
-  tag,
-  date,
-  read,
-  author,
-  authorRole,
-  title,
-  titleAccent,
-  description,
-} = Astro.props;
+const { tag, date, read, author, authorRole, title, titleAccent, description } = Astro.props;
 
 // Split the title around the accent phrase if one is provided.
 let before = title;
@@ -35,43 +26,43 @@ if (titleAccent && title.includes(titleAccent)) {
 }
 ---
 
-<article class="relative z-10 mx-auto max-w-250 px-8 pt-14">
+<article class="relative z-10 mx-auto max-w-250 px-8 pt-14" data-reveal-stagger>
   <a
     href="/journal"
-    class="mb-8 inline-flex items-center gap-1.75 text-sm font-semibold text-subtle no-underline hover:text-accent"
+    class="text-subtle hover:text-accent mb-8 inline-flex items-center gap-1.75 text-sm font-semibold no-underline"
   >
     ← Back to Journal
   </a>
 
   <div class="mb-5.5 flex items-center gap-2">
     <Tag variant="accent">{tag}</Tag>
-    <span class="text-[13px] text-subtle">{date} · {read}</span>
+    <span class="text-subtle text-[13px]">{date} · {read}</span>
   </div>
 
   <h1
-    class="font-display m-0 mb-6 text-[clamp(34px,5.4vw,58px)] font-bold leading-[1.02] tracking-[-0.03em]"
+    class="font-display m-0 mb-6 text-[clamp(34px,5.4vw,58px)] leading-[1.02] font-bold tracking-[-0.03em]"
   >
-    {titleAccent ? (
-      <>
-        {before}
-        {before && ' '}
-        <span class="font-serif italic font-normal text-accent">{titleAccent}</span>
-        {after && ' '}
-        {after}
-      </>
-    ) : (
-      title
-    )}
+    {
+      titleAccent ? (
+        <>
+          {before}
+          {before && ' '}
+          <span class="text-accent font-serif font-normal italic">{titleAccent}</span>
+          {after && ' '}
+          {after}
+        </>
+      ) : (
+        title
+      )
+    }
   </h1>
 
-  <p class="mb-8 text-xl leading-normal text-muted">{description}</p>
+  <p class="text-muted mb-8 text-xl leading-normal">{description}</p>
 
-  <div
-    class="flex items-center gap-3 border-b border-dark/15 pb-9 text-sm text-subtle"
-  >
+  <div class="border-dark/15 text-subtle flex items-center gap-3 border-b pb-9 text-sm">
     <GradientAvatar size={40} />
     <div class="flex flex-col">
-      <span class="font-semibold text-dark">{author}</span>
+      <span class="text-dark font-semibold">{author}</span>
       <span>{authorRole}</span>
     </div>
   </div>

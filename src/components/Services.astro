@@ -1,87 +1,49 @@
 ---
 import Eyebrow from './ui/Eyebrow.astro';
+import { services } from '../data/services';
 
 interface Props {
   showHeader?: boolean;
 }
 const { showHeader = true } = Astro.props;
-
-const services = [
-  {
-    num: '01',
-    title: 'Web Design',
-    body: 'Editorial, brand-led interfaces prototyped live so you sign off on the real thing, not a picture of it.',
-    meta: 'Systems · UX · Prototyping',
-  },
-  {
-    num: '02',
-    title: 'Full-stack Engineering',
-    body: 'React, Astro, and Next on the front. Node with tRPC or REST, Postgres, and auth on the back. Typed end to end, tested, and deployed to the edge.',
-    meta: ['React · Astro · Next', 'Node · tRPC · Postgres · Auth'],
-  },
-  {
-    num: '03',
-    title: 'Headless CMS',
-    body: 'Sanity, Contentful, or Payload models that editors actually reach for. Structured, previewable, boring in the best way.',
-    meta: 'Sanity · Contentful · DXP',
-  },
-  {
-    num: '04',
-    title: 'Performance & SEO',
-    body: 'Green Core Web Vitals, technical SEO baked in, and Lighthouse 100 on the pages that pay the bills.',
-    meta: 'CWV · Audits · Growth',
-  },
-  {
-    num: '05',
-    title: 'SMMA',
-    body: 'Social-first campaigns and paid growth wired straight into the site we shipped, so channel spend compounds.',
-    meta: 'Social · Content · Ads',
-  },
-  {
-    num: '06',
-    title: 'Consulting',
-    body: 'Discovery, UX and technical audits before the first commit, so the build starts from a plan instead of a hunch.',
-    meta: 'Discovery · Audits · Strategy',
-  },
-];
 ---
 
 <section id="services" class="relative z-10 mx-auto max-w-310 px-8 pt-24 pb-6">
-  {showHeader && (
-    <div class="mb-11.5 flex flex-wrap items-end justify-between gap-6">
-      <div>
-        <Eyebrow class="mb-4">What we do</Eyebrow>
-        <h2
-          class="font-display m-0 max-w-[14ch] text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
-        >
-          Full-stack web, minus the bloat.
-        </h2>
+  {
+    showHeader && (
+      <div class="mb-11.5 flex flex-wrap items-end justify-between gap-6" data-reveal>
+        <div>
+          <Eyebrow class="mb-4">What we do</Eyebrow>
+          <h2 class="font-display m-0 max-w-[14ch] text-[clamp(32px,4.6vw,60px)] leading-none font-bold tracking-[-0.03em]">
+            Full-stack web, minus the bloat.
+          </h2>
+        </div>
+        <p class="text-muted m-0 mb-1.5 max-w-[34ch] text-base">
+          From first pixel to production, we own the whole pipeline, so nothing gets lost between
+          design and deploy.
+        </p>
       </div>
-      <p class="m-0 mb-1.5 max-w-[34ch] text-base text-muted">
-        From first pixel to production, we own the whole pipeline, so nothing
-        gets lost between design and deploy.
-      </p>
-    </div>
-  )}
+    )
+  }
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {services.map((s) => (
-      <article
-        class="transition-all duration-300 ease-out flex min-h-65 flex-col gap-4 rounded-[18px] border border-dark/10 bg-card p-7.5 hover:-translate-y-1 hover:border-dark/15 hover:shadow-[0_26px_50px_-30px_rgba(26,22,17,0.32)]"
-      >
-        <div class="font-display text-[15px] font-bold text-accent">{s.num}</div>
-        <h3 class="font-display m-0 text-2xl font-bold tracking-[-0.02em]">
-          {s.title}
-        </h3>
-        <p class="m-0 text-[15px] leading-[1.55] text-muted">{s.body}</p>
-        {Array.isArray(s.meta) ? (
-          <div class="mt-auto flex flex-col gap-1 text-sm text-subtle">
-            {s.meta.map((line) => <div>{line}</div>)}
-          </div>
-        ) : (
-          <div class="mt-auto text-sm text-subtle">{s.meta}</div>
-        )}
-      </article>
-    ))}
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+    {
+      services.map((s) => (
+        <article class="border-dark/10 bg-card hover:border-dark/15 flex min-h-65 flex-col gap-4 rounded-[18px] border p-7.5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_50px_-30px_rgba(26,22,17,0.32)]">
+          <div class="font-display text-accent text-[15px] font-bold">{s.num}</div>
+          <h3 class="font-display m-0 text-2xl font-bold tracking-[-0.02em]">{s.title}</h3>
+          <p class="text-muted m-0 text-[15px] leading-[1.55]">{s.body}</p>
+          {Array.isArray(s.meta) ? (
+            <div class="text-subtle mt-auto flex flex-col gap-1 text-sm">
+              {s.meta.map((line) => (
+                <div>{line}</div>
+              ))}
+            </div>
+          ) : (
+            <div class="text-subtle mt-auto text-sm">{s.meta}</div>
+          )}
+        </article>
+      ))
+    }
   </div>
 </section>

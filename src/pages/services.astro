@@ -7,18 +7,11 @@ import Services from '../components/Services.astro';
 import ServiceCatalog from '../components/ServiceCatalog.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
-
-const includes = [
-  'A design system documented in code that your team can extend',
-  'Automated Lighthouse checks on every pull request',
-  'WCAG 2.2 AA accessibility audit before launch',
-  'Analytics + Core Web Vitals monitoring wired up on day one',
-  'A handoff runbook so maintainers know exactly what we built',
-];
+import { servicesIncludes } from '../data/services';
 ---
 
 <Layout
-  title="Services | SUE Agency"
+  title="Services - SUE Agency"
   description="Design, engineering, headless CMS, and performance. Full-stack web from one studio."
 >
   <Nav activeLink="Services" />
@@ -37,22 +30,19 @@ const includes = [
     <ServiceCatalog />
 
     <section class="relative z-10 mx-auto max-w-310 px-8 pt-16 pb-6">
-      <div class="rounded-[22px] border border-dark/10 bg-card p-10">
-        <div
-          class="mb-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-accent"
-        >
+      <div class="border-dark/10 bg-card rounded-[22px] border p-10" data-reveal>
+        <div class="text-accent mb-4 text-[13px] font-semibold tracking-[0.14em] uppercase">
           Every project also includes
         </div>
         <ul class="grid gap-3 md:grid-cols-2">
-          {includes.map((item) => (
-            <li class="flex items-start gap-3 text-base text-dark">
-              <span
-                class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
-                aria-hidden="true"
-              ></span>
-              <span>{item}</span>
-            </li>
-          ))}
+          {
+            servicesIncludes.map((item) => (
+              <li class="text-dark flex items-start gap-3 text-base">
+                <span class="bg-accent mt-2 h-1.5 w-1.5 shrink-0 rounded-full" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </section>

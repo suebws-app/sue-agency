@@ -19,24 +19,26 @@ if (titleAccent && title.includes(titleAccent)) {
 }
 ---
 
-<section class="relative z-10 mx-auto max-w-310 px-8 pb-10 pt-20">
+<section class="relative z-10 mx-auto max-w-310 px-8 pt-20 pb-10" data-reveal-stagger>
   <Eyebrow class="mb-4.5">{eyebrow}</Eyebrow>
   <h1
-    class="font-display m-0 max-w-[16ch] text-[clamp(44px,7vw,96px)] font-bold leading-[0.98] tracking-[-0.035em]"
+    class="font-display m-0 max-w-[16ch] text-[clamp(44px,7vw,96px)] leading-[0.98] font-bold tracking-[-0.035em]"
   >
-    {titleAccent ? (
-      <>
-        {before}
-        {before && ' '}
-        <span class="font-serif italic font-normal text-accent">{titleAccent}</span>
-        {after && ' '}
-        {after}
-      </>
-    ) : (
-      title
-    )}
+    {
+      titleAccent ? (
+        <>
+          {before}
+          {before && ' '}
+          <span class="text-accent font-serif font-normal italic">{titleAccent}</span>
+          {after && ' '}
+          {after}
+        </>
+      ) : (
+        title
+      )
+    }
   </h1>
-  <p class="mt-7 max-w-[52ch] text-[19px] leading-[1.5] text-muted">
+  <p class="text-muted mt-7 max-w-[52ch] text-[19px] leading-normal">
     {description}
   </p>
 </section>

@@ -1,24 +1,26 @@
 ---
+
 ---
 
-<section class="relative z-10 mx-auto max-w-310 px-8 pb-24 pt-16">
+<section class="relative z-10 mx-auto max-w-310 px-8 pt-16 pb-24">
   <div
-    class="relative flex flex-wrap items-center justify-between gap-10 overflow-hidden rounded-[22px] bg-ink p-[clamp(40px,6vw,72px)] text-bg"
+    class="bg-ink text-bg relative flex flex-wrap items-center justify-between gap-10 overflow-hidden rounded-[22px] p-[clamp(40px,6vw,72px)]"
+    data-reveal
   >
     <div
-      class="animate-drift-1 pointer-events-none absolute -inset-[20%]"
+      class="animate-drift-1 pointer-events-none absolute inset-[-20%]"
       style="background: radial-gradient(80% 120% at 90% 0%, rgba(255, 82, 51, 0.22), transparent 55%);"
       aria-hidden="true"
-    ></div>
+    >
+    </div>
     <div class="relative max-w-[34ch]">
       <h2
-        class="font-display m-0 mb-3 text-[clamp(28px,4vw,46px)] font-bold leading-[1.02] tracking-[-0.03em]"
+        class="font-display m-0 mb-3 text-[clamp(28px,4vw,46px)] leading-[1.02] font-bold tracking-[-0.03em]"
       >
         One good read a month.
       </h2>
-      <p class="m-0 text-base text-bg/65">
-        The best of the Journal, plus what we're building. No spam, unsubscribe
-        anytime.
+      <p class="text-bg/65 m-0 text-base">
+        The best of the Journal, plus what we're building. No spam, unsubscribe anytime.
       </p>
     </div>
     <form
@@ -32,15 +34,14 @@
         type="email"
         required
         placeholder="you@company.com"
-        class="min-w-50 flex-1 rounded-full border border-bg/20 bg-bg/10 px-4.5 py-3.75 text-[15px] text-bg placeholder:text-bg/60 focus:border-accent-vivid focus:outline-none"
+        class="border-bg/20 bg-bg/10 text-bg placeholder:text-bg/60 focus:border-accent-vivid min-w-50 flex-1 rounded-full border px-4.5 py-3.75 text-[15px] focus:outline-none"
       />
       <button
         type="submit"
-        class="cursor-pointer rounded-full border-0 bg-accent px-6.5 py-3.75 text-[15px] font-semibold text-white hover:brightness-95"
+        class="bg-accent cursor-pointer rounded-full border-0 px-6.5 py-3.75 text-[15px] font-semibold text-white hover:brightness-95"
       >
         Subscribe
       </button>
     </form>
   </div>
 </section>
-

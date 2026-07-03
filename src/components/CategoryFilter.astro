@@ -7,29 +7,22 @@ interface Props {
 const { active = 'All' } = Astro.props;
 ---
 
-<section
-  class="relative z-10 mx-auto max-w-310 px-8 pb-9 pt-2"
-  data-category-filter
->
-  <div class="flex flex-wrap gap-2.5">
-    {categories.map((cat) => (
-      <button
-        type="button"
-        data-category={cat}
-        data-active={cat === active ? 'true' : 'false'}
-        class="rounded-full border px-4.5 py-2.25 text-sm transition-colors data-[active=true]:border-transparent data-[active=true]:bg-dark data-[active=true]:font-semibold data-[active=true]:text-bg data-[active=false]:border-dark/15 data-[active=false]:text-muted data-[active=false]:hover:border-dark"
-      >
-        {cat}
-      </button>
-    ))}
+<section class="relative z-10 mx-auto max-w-310 px-8 pt-2 pb-9" data-category-filter>
+  <div class="flex flex-wrap gap-2.5" data-reveal>
+    {
+      categories.map((cat) => (
+        <button
+          type="button"
+          data-category={cat}
+          data-active={cat === active ? 'true' : 'false'}
+          class="data-[active=true]:bg-dark data-[active=true]:text-bg data-[active=false]:border-dark/15 data-[active=false]:text-muted data-[active=false]:hover:border-dark rounded-full border px-4.5 py-2.25 text-sm transition-colors data-[active=true]:border-transparent data-[active=true]:font-semibold"
+        >
+          {cat}
+        </button>
+      ))
+    }
   </div>
-  <p
-    data-empty-state
-    hidden
-    class="mt-6 text-sm text-subtle"
-  >
-    No posts in this category yet.
-  </p>
+  <p data-empty-state hidden class="text-subtle mt-6 text-sm">No posts in this category yet.</p>
 </section>
 
 <script>
@@ -54,16 +47,13 @@ const { active = 'All' } = Astro.props;
       });
 
       const heroVisible = isAll && hero !== null;
-      if (emptyState)
-        emptyState.toggleAttribute('hidden', visible > 0 || heroVisible);
+      if (emptyState) emptyState.toggleAttribute('hidden', visible > 0 || heroVisible);
     };
 
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
         const category = btn.dataset.category ?? 'All';
-        buttons.forEach((b) =>
-          b.setAttribute('data-active', b === btn ? 'true' : 'false'),
-        );
+        buttons.forEach((b) => b.setAttribute('data-active', b === btn ? 'true' : 'false'));
         applyFilter(category);
       });
     });

@@ -2,63 +2,56 @@
 import Logo from './Logo.astro';
 import PillButton from './ui/PillButton.astro';
 import { cn } from '../lib/cn';
+import { navLinks, type NavLabel } from '../data/navigation';
 
 interface Props {
-  activeLink?: 'Home' | 'Work' | 'Services' | 'Process' | 'Journal';
+  activeLink?: NavLabel;
 }
 
 const { activeLink } = Astro.props;
-
-const links = [
-  { href: '/', label: 'Home' as const },
-  { href: '/work', label: 'Work' as const },
-  { href: '/services', label: 'Services' as const },
-  { href: '/process', label: 'Process' as const },
-  { href: '/journal', label: 'Journal' as const },
-];
 ---
 
 <header
   id="site-header"
-  class="fixed inset-x-0 top-0 z-50 border-b border-dark/10 backdrop-blur-md"
+  class="border-dark/10 fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md"
   style="background: rgba(243, 243, 244, 0.78);"
 >
   <nav class="mx-auto flex max-w-310 items-center justify-between gap-6 px-8 py-4.5">
     <Logo href="/" />
     <div class="hidden items-center gap-8.5 md:flex">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          class={cn(
-            'text-[15px] no-underline hover:text-accent',
-            activeLink === link.label
-              ? 'font-semibold text-accent'
-              : 'font-medium text-dark',
-          )}
-        >
-          {link.label}
-        </a>
-      ))}
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={cn(
+              'hover:text-accent text-[15px] no-underline',
+              activeLink === link.label ? 'text-accent font-semibold' : 'text-dark font-medium',
+            )}
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </div>
     <div class="flex items-center gap-3">
       <PillButton href="/contact" class="hidden sm:inline-block">Start a project</PillButton>
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-full text-dark hover:bg-dark/5 md:hidden"
+        class="text-dark hover:bg-dark/5 inline-flex h-10 w-10 items-center justify-center rounded-full md:hidden"
         aria-label="Open menu"
         aria-controls="mobile-menu"
         aria-expanded="false"
       >
         <span class="relative block h-4 w-5" aria-hidden="true">
           <span
-            class="mobile-menu-bar absolute left-0 top-0 block h-0.5 w-full rounded-full bg-dark transition-transform duration-200"
+            class="mobile-menu-bar bg-dark absolute top-0 left-0 block h-0.5 w-full rounded-full transition-transform duration-200"
           ></span>
           <span
-            class="mobile-menu-bar absolute left-0 top-1/2 block h-0.5 w-full -translate-y-1/2 rounded-full bg-dark transition-opacity duration-200"
+            class="mobile-menu-bar bg-dark absolute top-1/2 left-0 block h-0.5 w-full -translate-y-1/2 rounded-full transition-opacity duration-200"
           ></span>
           <span
-            class="mobile-menu-bar absolute bottom-0 left-0 block h-0.5 w-full rounded-full bg-dark transition-transform duration-200"
+            class="mobile-menu-bar bg-dark absolute bottom-0 left-0 block h-0.5 w-full rounded-full transition-transform duration-200"
           ></span>
         </span>
       </button>
@@ -66,59 +59,28 @@ const links = [
   </nav>
   <div id="mobile-menu" class="mobile-menu md:hidden">
     <div class="mobile-menu-inner">
-      <div class="mobile-menu-panel border-t border-dark/10 bg-cream/95 backdrop-blur-md">
+      <div class="mobile-menu-panel border-dark/10 bg-cream/95 border-t backdrop-blur-md">
         <div class="mx-auto flex max-w-310 flex-col gap-1 px-8 py-4">
-          {links.map((link) => (
-            <a
-              href={link.href}
-              class={cn(
-                'rounded-lg px-3 py-3 text-base no-underline hover:bg-dark/5 hover:text-accent',
-                activeLink === link.label
-                  ? 'font-semibold text-accent'
-                  : 'font-medium text-dark',
-              )}
-            >
-              {link.label}
-            </a>
-          ))}
-          <PillButton href="/contact" class="mt-3 text-center sm:hidden">Start a project</PillButton>
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class={cn(
+                  'hover:bg-dark/5 hover:text-accent rounded-lg px-3 py-3 text-base no-underline',
+                  activeLink === link.label ? 'text-accent font-semibold' : 'text-dark font-medium',
+                )}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+          <PillButton href="/contact" class="mt-3 text-center sm:hidden">Start a project</PillButton
+          >
         </div>
       </div>
     </div>
   </div>
 </header>
-
-<style>
-  .mobile-menu {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .mobile-menu.open {
-    grid-template-rows: 1fr;
-  }
-  .mobile-menu-inner {
-    min-height: 0;
-    overflow: hidden;
-  }
-  .mobile-menu-panel {
-    transform: translateY(-8px);
-    opacity: 0;
-    transition:
-      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .mobile-menu.open .mobile-menu-panel {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .mobile-menu,
-    .mobile-menu-panel {
-      transition: none;
-    }
-  }
-</style>
 
 <script>
   const toggle = document.getElementById('mobile-menu-toggle');

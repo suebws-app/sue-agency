@@ -1,113 +1,69 @@
 ---
 import Eyebrow from './ui/Eyebrow.astro';
+import { processSteps } from '../data/process';
 
 interface Props {
   showHeader?: boolean;
 }
 const { showHeader = true } = Astro.props;
-
-interface Step {
-  week: string;
-  title: string;
-  body: string;
-  services: string[];
-  ongoing?: boolean;
-}
-
-const steps: Step[] = [
-  {
-    week: 'Week 01',
-    title: 'Discover',
-    body: 'Goals, audience, and an honest read on what you have today.',
-    services: ['Discovery Workshop', 'UX Audit', 'Technical Audit'],
-  },
-  {
-    week: 'Week 02',
-    title: 'Design',
-    body: 'Brand system and key pages, prototyped live in the browser.',
-    services: ['Branding', 'UX/UI Design', 'Web Design'],
-  },
-  {
-    week: 'Week 03',
-    title: 'Build',
-    body: 'Composable frontend wired to your CMS, shipped to preview URLs.',
-    services: ['Modern Frontend', 'Headless CMS', 'Webflow'],
-  },
-  {
-    week: 'Week 04',
-    title: 'Launch',
-    body: 'Perf pass, QA, and a zero-downtime deploy. Then a clean hand-off.',
-    services: ['Core Web Vitals', 'SEO & QA', 'Go-live'],
-  },
-  {
-    week: 'Ongoing',
-    title: 'Grow',
-    body: 'After launch we keep shipping. Optimization, monitoring, and growth as a retainer.',
-    services: ['CRO', 'Core Web Vitals', 'SMMA'],
-    ongoing: true,
-  },
-];
 ---
 
-<section id="process" class="relative z-10 mt-14 bg-ink text-cream">
+<section id="process" class="bg-ink text-cream relative z-10 mt-14">
   <div class="mx-auto max-w-310 px-8 py-24">
-    {showHeader && (
-      <div class="mb-14 flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <Eyebrow onDark class="mb-4">How we work</Eyebrow>
-          <h2
-            class="font-display m-0 max-w-[18ch] text-[clamp(32px,4.6vw,60px)] font-bold leading-none tracking-[-0.03em]"
-          >
-            Four weeks to launch, then we keep{' '}
-            <span class="font-serif italic font-normal text-accent-vivid">shipping.</span>
-          </h2>
+    {
+      showHeader && (
+        <div class="mb-14 flex flex-wrap items-end justify-between gap-6" data-reveal>
+          <div>
+            <Eyebrow onDark class="mb-4">
+              How we work
+            </Eyebrow>
+            <h2 class="font-display m-0 max-w-[18ch] text-[clamp(32px,4.6vw,60px)] leading-none font-bold tracking-[-0.03em]">
+              Four weeks to launch, then we keep{' '}
+              <span class="text-accent-vivid font-serif font-normal italic">shipping.</span>
+            </h2>
+          </div>
+          <p class="text-cream/65 m-0 mb-1.5 max-w-[34ch] text-base">
+            A tight, transparent process. You see progress every week in a real environment, and the
+            work does not stop at go-live.
+          </p>
         </div>
-        <p class="m-0 mb-1.5 max-w-[34ch] text-base text-cream/65">
-          A tight, transparent process. You see progress every week in a real
-          environment, and the work does not stop at go-live.
-        </p>
-      </div>
-    )}
+      )
+    }
 
     <div
-      class="grid grid-cols-1 gap-px overflow-hidden rounded-[20px] border border-cream/15 bg-cream/15 sm:grid-cols-2 lg:grid-cols-4"
+      class="border-cream/15 bg-cream/15 grid grid-cols-1 gap-px overflow-hidden rounded-[20px] border sm:grid-cols-2 lg:grid-cols-4"
+      data-reveal-stagger
     >
-      {steps.map((s) => (
-        <div
-          class:list={[
-            'flex flex-col p-8 bg-ink ',
-            s.ongoing
-              ? 'sm:col-span-2 lg:col-span-4'
-              : '',
-          ]}
-        >
-          <div class="font-display mb-10 flex items-center gap-2 text-[15px] font-bold text-accent-vivid">
-            <span>{s.week}</span>
-            {s.ongoing && (
-              <span
-                class="rounded-full border border-accent-vivid/40 px-2 py-0.5 text-[11px] uppercase tracking-[0.14em] text-accent-vivid/90"
-              >
-                Retainer
-              </span>
-            )}
-          </div>
-          <h3
-            class="font-display m-0 mb-2.5 text-[22px] font-bold tracking-[-0.02em]"
+      {
+        processSteps.map((s) => (
+          <div
+            class:list={[
+              'bg-ink flex flex-col p-8',
+              s.ongoing ? 'sm:col-span-2 lg:col-span-4' : '',
+            ]}
           >
-            {s.title}
-          </h3>
-          <p class="m-0 text-sm leading-[1.55] text-cream/60">{s.body}</p>
-          <ul class="mt-6 flex flex-wrap gap-1.5 list-none p-0">
-            {s.services.map((svc) => (
-              <li
-                class="rounded-full border border-cream/15 px-2.5 py-1 text-[11px] uppercase tracking-widest text-cream/70"
-              >
-                {svc}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+            <div class="font-display text-accent-vivid mb-10 flex items-center gap-2 text-[15px] font-bold">
+              <span>{s.week}</span>
+              {s.ongoing && (
+                <span class="border-accent-vivid/40 text-accent-vivid/90 rounded-full border px-2 py-0.5 text-[11px] tracking-[0.14em] uppercase">
+                  Retainer
+                </span>
+              )}
+            </div>
+            <h3 class="font-display m-0 mb-2.5 text-[22px] font-bold tracking-[-0.02em]">
+              {s.title}
+            </h3>
+            <p class="text-cream/60 m-0 text-sm leading-[1.55]">{s.body}</p>
+            <ul class="mt-6 flex list-none flex-wrap gap-1.5 p-0">
+              {s.services.map((svc) => (
+                <li class="border-cream/15 text-cream/70 rounded-full border px-2.5 py-1 text-[11px] tracking-widest uppercase">
+                  {svc}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

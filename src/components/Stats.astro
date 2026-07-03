@@ -1,26 +1,22 @@
 ---
-const stats = [
-  { value: '0.4', suffix: 's', label: 'Average load time' },
-  { value: '100', suffix: null, label: 'Median Lighthouse score' },
-  { value: '120', suffix: '+', label: 'Sites launched' },
-  { value: '4.9', suffix: null, label: 'Avg. client rating' },
-];
+import { homepageStats } from '../data/site';
 ---
 
 <section class="relative z-10 mx-auto max-w-310 px-8 py-18">
   <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6 border-y border-dark/15 py-12"
+    class="border-dark/15 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6 border-y py-12"
+    data-reveal-stagger
   >
-    {stats.map((s) => (
-      <div>
-        <div
-          class="font-display text-[clamp(44px,5.5vw,72px)] font-bold leading-[0.9] tracking-[-0.04em]"
-        >
-          {s.value}
-          {s.suffix && <span class="text-[0.42em] text-accent">{s.suffix}</span>}
+    {
+      homepageStats.map((s) => (
+        <div class="text-center">
+          <div class="font-display text-[clamp(44px,5.5vw,72px)] leading-[0.9] font-bold tracking-[-0.04em]">
+            {s.value}
+            {s.suffix && <span class="text-accent text-[0.42em]">{s.suffix}</span>}
+          </div>
+          <div class="text-muted mt-2.5 text-[15px]">{s.label}</div>
         </div>
-        <div class="mt-2.5 text-[15px] text-muted">{s.label}</div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </section>

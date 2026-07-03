@@ -8,10 +8,7 @@ const { href, class: className = '' } = Astro.props;
 
 <a
   href={href}
-  class:list={[
-    'underline-fill pb-0.5 text-[15px] font-semibold text-dark no-underline',
-    className,
-  ]}
+  class:list={['underline-fill text-dark pb-0.5 text-[15px] font-semibold no-underline', className]}
 >
   <slot />
 </a>

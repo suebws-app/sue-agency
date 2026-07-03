@@ -6,14 +6,14 @@ every page except the contact form and the reading-progress bar.
 
 ## Stack
 
-| | |
-| --- | --- |
-| Framework | Astro 7 (static output) |
-| Styling | Tailwind CSS v4 via the Vite plugin, CSS-first `@theme` tokens |
-| Fonts | Self-hosted via Astro's `fonts` API — Bricolage Grotesque, Instrument Sans, Instrument Serif, JetBrains Mono. Subsetted `.woff2`, latin only, `--font-display` preloaded |
-| Icons / arrows | Inline SVG or Unicode |
-| Utilities | `clsx` + `tailwind-merge` behind a `cn()` helper |
-| Client JS | Only where earned — `<ReadingProgress>` scroll listener on articles, and the contact form's `mailto:` builder. Everything else ships zero bytes of JS. |
+|                |                                                                                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Framework      | Astro 7 (static output)                                                                                                                                                  |
+| Styling        | Tailwind CSS v4 via the Vite plugin, CSS-first `@theme` tokens                                                                                                           |
+| Fonts          | Self-hosted via Astro's `fonts` API — Bricolage Grotesque, Instrument Sans, Instrument Serif, JetBrains Mono. Subsetted `.woff2`, latin only, `--font-display` preloaded |
+| Icons / arrows | Inline SVG or Unicode                                                                                                                                                    |
+| Utilities      | `clsx` + `tailwind-merge` behind a `cn()` helper                                                                                                                         |
+| Client JS      | Only where earned — `<ReadingProgress>` scroll listener on articles, and the contact form's `mailto:` builder. Everything else ships zero bytes of JS.                   |
 
 Node `>=22.12.0`.
 
@@ -87,15 +87,15 @@ Editing tokens flows to every consumer — no other file references hex codes fo
 
 Extracted because they had 3+ occurrences:
 
-| Component | What it does |
-| --- | --- |
-| `Tag` | Rounded pill — `variant="outline"` (default) or `variant="accent"` |
-| `PillButton` | Dark rounded CTA — `size="sm" \| "md" \| "lg"` |
-| `TextLink` | Link with the left-to-right underline slide-in on hover |
-| `Eyebrow` | Uppercase accent-orange label above section titles, `onDark` for dark sections |
-| `GradientAvatar` | Orange-to-violet circle; takes a `size` in px |
-| `AuroraGlow` | Radial-gradient overlay inside dark cards |
-| `StatItem` | Big display number + `opacity-60` label, three sizes |
+| Component        | What it does                                                                   |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `Tag`            | Rounded pill — `variant="outline"` (default) or `variant="accent"`             |
+| `PillButton`     | Dark rounded CTA — `size="sm" \| "md" \| "lg"`                                 |
+| `TextLink`       | Link with the left-to-right underline slide-in on hover                        |
+| `Eyebrow`        | Uppercase accent-orange label above section titles, `onDark` for dark sections |
+| `GradientAvatar` | Orange-to-violet circle; takes a `size` in px                                  |
+| `AuroraGlow`     | Radial-gradient overlay inside dark cards                                      |
+| `StatItem`       | Big display number + `opacity-60` label, three sizes                           |
 
 Plus non-`ui/` shared components: `PageHero`, `CaseCard`, `Nav`, `Footer`.
 
