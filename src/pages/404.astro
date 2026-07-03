@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Aurora from '../components/Aurora.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Page not found - SUE Agency"
+  description="The page you're looking for doesn't exist or has moved."
+>
+  <Nav />
+  <main class="relative flex min-h-dvh flex-col items-center justify-center pt-18.25">
+    <Aurora variant="compact" />
+
+    <PageHero
+      eyebrow="404"
+      title="Page not found."
+      titleAccent="not found"
+      description="The page you're after doesn't exist, or it's moved somewhere else. Head back home or drop us a line."
+      eyebrowClassName="text-[40px]"
+    />
+
+    <section class="relative z-10 mx-auto max-w-310 px-8 pt-2 pb-24" data-reveal>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/"
+          class="bg-accent rounded-full px-6.5 py-3.75 text-[15px] font-semibold whitespace-nowrap text-white no-underline shadow-[0_14px_30px_-12px_rgba(26,22,17,0.4)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-14px_rgba(26,22,17,0.5)] hover:brightness-95"
+        >
+          Back to home
+        </a>
+        <a
+          href="/contact"
+          class="border-dark/20 hover:border-dark text-dark rounded-full border bg-transparent px-6.5 py-3.75 text-[15px] font-semibold whitespace-nowrap no-underline"
+        >
+          Contact us →
+        </a>
+      </div>
+    </section>
+  </main>
+  <div class="offscreen">
+    <Footer />
+  </div>
+</Layout>
