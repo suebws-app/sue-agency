@@ -41,10 +41,10 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
           id="contact-form"
           class="border-dark/10 bg-card rounded-[22px] border p-8 lg:p-10"
           method="post"
-          action=`mailto:${EMAIL}`
-          enctype="text/plain"
+          action=`https://formsubmit.co/${EMAIL}`
           novalidate
         >
+          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
           <div class="grid gap-6 sm:grid-cols-2">
             <div>
               <label class={labelClass} for="name">Your name</label>
@@ -117,13 +117,31 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <button
               type="submit"
-              class="bg-accent rounded-full px-7 py-4 text-base font-semibold whitespace-nowrap text-white no-underline shadow-[0_14px_30px_-12px_rgba(26,22,17,0.4)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-14px_rgba(26,22,17,0.5)] hover:brightness-95"
+              class="bg-accent rounded-full px-7 py-4 text-base font-semibold whitespace-nowrap text-white no-underline shadow-[0_14px_30px_-12px_rgba(26,22,17,0.4)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-14px_rgba(26,22,17,0.5)] hover:brightness-95 disabled:pointer-events-none disabled:opacity-60"
             >
               Send message →
             </button>
             <p id="form-status" class="text-subtle m-0 text-sm" aria-live="polite"></p>
           </div>
         </form>
+
+        <div
+          id="form-success"
+          class="border-dark/10 bg-card hidden flex-col self-start rounded-[22px] border p-8 lg:p-10"
+          tabindex="-1"
+        >
+          <div
+            class="text-emerald-brand mb-3 text-[13px] font-semibold tracking-[0.14em] uppercase"
+          >
+            Message sent
+          </div>
+          <h2 class="font-display text-dark m-0 text-2xl font-bold tracking-[-0.02em]">
+            Thanks — your message is on its way.
+          </h2>
+          <p class="text-muted mt-3 text-base leading-[1.6]">
+            We'll reply within two business days.
+          </p>
+        </div>
 
         <aside class="flex flex-col gap-8">
           <div class="border-dark/10 bg-card rounded-[22px] border p-8">
@@ -180,9 +198,13 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
   import { EMAIL } from '../helpers/constants';
 
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const success = document.getElementById('form-success');
   const status = document.getElementById('form-status');
+  const setStatus = (text: string) => {
+    if (status) status.textContent = text;
+  };
 
-  form?.addEventListener('submit', (event) => {
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if (!form.checkValidity()) {
@@ -190,29 +212,32 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
       return;
     }
 
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const data = new FormData(form);
-    const labels: Record<string, string> = {
-      name: 'Name',
-      email: 'Email',
-      company: 'Company',
-      details: 'Project',
-      budget: 'Budget',
-      timeline: 'Timeline',
-    };
+    data.set('_subject', `Project inquiry from ${data.get('name') ?? 'SUE Agency'}`);
+    data.set('_template', 'table');
+    data.set('_captcha', 'false');
 
-    const lines: string[] = [];
-    for (const key of Object.keys(labels)) {
-      const value = String(data.get(key) ?? '').trim();
-      if (value) lines.push(`${labels[key]}: ${value}`);
+    if (button) button.disabled = true;
+    setStatus('Sending…');
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+      if (success) {
+        form.classList.add('hidden');
+        success.classList.replace('hidden', 'flex');
+        success.focus({ preventScroll: true });
+      }
+    } catch {
+      setStatus(`Something went wrong. Please email us directly at ${EMAIL}.`);
+    } finally {
+      if (button) button.disabled = false;
     }
-
-    const subject = `Project inquiry from ${data.get('name') ?? 'SUE Agency'}`;
-    const body = lines.join('\n\n');
-    const url = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    if (status) {
-      status.textContent = 'Opening your email client…';
-    }
-    window.location.href = url;
   });
 </script>
