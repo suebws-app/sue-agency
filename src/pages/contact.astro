@@ -5,6 +5,7 @@ import Aurora from '../components/Aurora.astro';
 import PageHero from '../components/PageHero.astro';
 import Footer from '../components/Footer.astro';
 import { contactNextSteps, budgetOptions, timelineOptions } from '../data/contact';
+import { EMAIL } from '../helpers/constants';
 
 const inputClass =
   'w-full rounded-xl border border-dark/15 bg-white px-4 py-3 text-base text-dark placeholder:text-subtle focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20';
@@ -31,7 +32,7 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
       eyebrow="Start a project"
       title="Let's talk."
       titleAccent="Let's"
-      description="Tell us what you're building. We'll come back within two business days with a plan and a ballpark. Prefer email? hello@sueagency.com."
+      description=`Tell us what you're building. We'll come back within two business days with a plan and a ballpark. Prefer email? ${EMAIL}.`
     />
 
     <section class="relative z-10 mx-auto max-w-310 px-8 pt-6 pb-16">
@@ -40,7 +41,7 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
           id="contact-form"
           class="border-dark/10 bg-card rounded-[22px] border p-8 lg:p-10"
           method="post"
-          action="mailto:hello@sueagency.com"
+          action=`mailto:${EMAIL}`
           enctype="text/plain"
           novalidate
         >
@@ -130,10 +131,10 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
               Or email us directly
             </div>
             <a
-              href="mailto:hello@sueagency.com"
+              href=`mailto:${EMAIL}`
               class="underline-fill font-display text-dark inline-block pb-0.5 text-lg font-bold no-underline"
             >
-              hello@sueagency.com
+              {EMAIL}
             </a>
             <p class="text-muted mt-3 text-sm leading-[1.6]">
               We read every inbound and reply within two business days. If you need faster than
@@ -176,6 +177,8 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
 </Layout>
 
 <script>
+  import { EMAIL } from '../helpers/constants';
+
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const status = document.getElementById('form-status');
 
@@ -205,7 +208,7 @@ const labelClass = 'mb-2 block text-sm font-semibold text-dark';
 
     const subject = `Project inquiry from ${data.get('name') ?? 'SUE Agency'}`;
     const body = lines.join('\n\n');
-    const url = `mailto:hello@sueagency.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const url = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     if (status) {
       status.textContent = 'Opening your email client…';

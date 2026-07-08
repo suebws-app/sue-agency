@@ -1,3 +1,5 @@
+import { EMAIL, SOCIAL_MEDIA } from '../helpers/constants';
+
 export type NavLabel = 'Home' | 'Work' | 'Services' | 'Process' | 'Journal';
 
 export interface NavLink {
@@ -34,11 +36,6 @@ export const footerColumns: FooterColumn[] = [
   },
   {
     label: 'Connect',
-    links: [
-      { href: 'https://twitter.com', label: 'Twitter / X' },
-      { href: 'https://github.com', label: 'GitHub' },
-      { href: 'https://linkedin.com', label: 'LinkedIn' },
-      { href: 'mailto:hello@sueagency.com', label: 'Email' },
-    ],
+    links: [...SOCIAL_MEDIA, { href: `mailto:${EMAIL}`, label: 'Email' }],
   },
 ];

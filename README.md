@@ -116,7 +116,7 @@ static route `journal/[slug].astro` picks it up automatically at build time.
 ## Contact form
 
 `/contact` submits without a backend. On submit, a small script gathers the form fields
-and opens the user's default email client via a prefilled `mailto:hello@sueagency.com`
+and opens the user's default email client via a prefilled `mailto:contact@sueagency.com`
 URL. Progressive enhancement: raw `<form action="mailto:…" enctype="text/plain">`
 fallback if JS is disabled.
 
